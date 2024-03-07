@@ -1,9 +1,11 @@
 import './App.css'
 
+import { Index } from './pages/index'
+
 function App() {
   return (
-    <main>
-      <h1 className='bg-black'>hola</h1>
+    <main className='bg-primary-color'>
+      <Index></Index>
     </main>
   )
 }
