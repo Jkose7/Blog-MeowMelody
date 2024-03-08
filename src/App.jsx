@@ -4,7 +4,7 @@ import { Index } from './pages/index'
 
 function App() {
   return (
-    <main className='bg-primary-color'>
+    <main className='bg-black'>
       <Index></Index>
     </main>
   )

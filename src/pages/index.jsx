@@ -2,14 +2,14 @@ import { Aside_news } from "../components/Aside_news"
 
 export function Index() {
     return (
-        <section className=" mx-80 gap-7 flex flex-col">
-            <nav className="bg-transparent flex  justify-between font-titulos items-center">
+        <section className=" mx-28 xl:mx-80 gap-7 flex flex-col">
+            <nav className="bg-transparent flex justify-between font-titulos items-center text-primary-color">
                 <div className="text-3xl">
                     MeowMelody
                 </div>
 
                 <div className="hover:bg-second-color hover:text-white p-3 rounded-sm transition-all duration-100">
-                    <button>Create</button>
+                    <button className="text-xl">Create</button>
                 </div>
             </nav>
 
@@ -31,7 +31,7 @@ export function Index() {
                 <div>
                     <h1>By Future</h1>
                 </div>
-                <div className="bg-black  h-[2px] w-full"></div>
+                <div className="bg-third-color  h-[2px] w-full"></div>
                 <div>
                     <a href="">G</a>
                     <a href="">I</a>
