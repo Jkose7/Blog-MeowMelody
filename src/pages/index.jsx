@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { Aside_news } from "../components/Aside_news"
 
 export function Index() {
@@ -9,7 +10,9 @@ export function Index() {
                 </div>
 
                 <div className="hover:bg-primary-color hover:text-black rounded-sm transition-all duration-150">
-                    <button className="text-xl px-3 py-1">Create</button>
+                    <Link className="text-xl px-3 py-1" to='/createNew'>
+                        Create
+                    </Link>
                 </div>
             </nav>
 
