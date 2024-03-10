@@ -6,7 +6,7 @@ import { CreateNews } from './pages/createNew'
 
 function App() {
   return (
-    <main className='bg-black'>
+    <main className='bg-primary-color dark:bg-second-color -z-10'>
       <Routes>
         <Route
           path='/' element={<Index></Index>}

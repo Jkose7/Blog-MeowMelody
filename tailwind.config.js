@@ -4,12 +4,12 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  "darkMode" : 'class',
   theme: {
     extend: {
       colors : {
-        'primary-color' : "#faf6de",
-        'second-color'  : "#5e2129",
-        'third-color' : "#170a0a"
+        'primary-color' : "#FFFFEC",
+        'second-color'  : "#1a1a1a",
       },
       fontFamily : {
         'titulos' : ['Playfair Display','Arial', 'sans-serif'],
