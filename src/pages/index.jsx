@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+
 
 import { AsideNews } from "../components/asideNews"
 import { ChangeTheme } from "../components/changeTheme"
 import { ButtonCreateNew } from "../components/buttonCreateNew"
 import { MainNew } from "../components/mainNew"
+import { Nav } from "../components/nav"
 
 import { useEffect, useState } from 'react'
 
@@ -34,18 +35,9 @@ export function Index() {
 
     return (
         <section className="mx-5 md:mx-16 lg:mx-28 xl:mx-80 gap-5 flex flex-col h-screen">
-            <nav className="bg-transparent flex justify-between font-titulos font-bold items-center text-black dark:text-primary-color h-14 relative pt-5">
-                <div className="text-3xl z-10">
-                    MeowMelody
-                </div>
-
-                <div className="">
-                    <Link className="text-xl px-3 py-1" to='/createNew'>
-                        Create
-                    </Link>
-                    <ChangeTheme toggleTheme={toggleTheme} theme={theme} />
-                </div>
-            </nav>
+            <Nav>
+                <ChangeTheme toggleTheme={toggleTheme} theme={theme} />
+            </Nav>
 
             <section className="h-screen flex gap-1 flex-col">
 
