@@ -1,6 +1,6 @@
-
+import { Nav } from '../components/nav';
 import {useForm} from 'react-hook-form'
-import { FormError } from '../components/formError';
+//import { FormError } from '../components/formError';
 
 export function CreateNews () {
 
@@ -15,8 +15,9 @@ export function CreateNews () {
     })
 
     return(
-        <section className="bg-emerald-800 flex justify-center items-center flex-col gap-4 min-h-screen]">
-            <h1 className="text-white">Form pa mi novio hemosho</h1>
+        <section className="bg-emerald-800 flex justify-center items-center flex-col gap-4  absolute h-full w-full">
+            <Nav/>
+            <h1 className="font-titulos font-semibold text-white text-2xl">New MeowNews</h1>
 
             
 
@@ -81,14 +82,22 @@ export function CreateNews () {
                 className="block">Contenido</label>
                 <textarea name="" id="" cols="30" rows="10"
                 {...register("Contenido",{
-                    required: true
+                    required: {
+                        value:true,
+                        message: "El contenido es obligatorio"
+                    },
+                    minLength: {
+                        value: 50,
+                        message: "Tu contenido debe ser más extenso"
+                    },
+                    maxLength: {
+                        value: 1000,
+                        message: "Tu contenido debe ser menos extenso"
+                    }
                  })}
                 className='w-full text-black'></textarea>
                 {
-                  errors.Contenido  && <FormError
-                  campo="El contenido"
-                  error="es requerido"
-                  />
+                  errors.Contenido  && <span>{errors.Contenido.message}</span>
                 }
 
                 {/*IMAGEN */}
@@ -112,6 +121,8 @@ export function CreateNews () {
                     CREAR
                 </button>
             </form>
+
+           
         </section>
     )
 }
