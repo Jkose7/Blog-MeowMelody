@@ -1,37 +1,25 @@
-import { useEffect, useState } from "react"
-
-export function ChangeTheme (){
-    const [theme, setTheme] = useState(()=>{
-        if(window.matchMedia("(prefers-colors-sheme: dark)").matches){
-            return 'dark'
-        }
-
-        return 'light'
-    })
-    
-    useEffect(()=>{
-        theme === 'dark' ? 
-        document.querySelector('html').classList.add('dark') 
-        :  
-        document.querySelector('html').classList.remove('dark')
-    }, [theme])
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 
-    const toggleTheme = () =>{
-        setTheme(theme === 'light' ? 'dark' : 'light')
-    }
-
-    console.log(theme)
+export function ChangeTheme({ toggleTheme, theme }) {
 
 
     return (
         <button onClick={toggleTheme}>
             {
-                theme === 'light' ? 
-                "c" 
-                :
-                "d"
-            }        
+                theme === 'light' ?
+                    <FontAwesomeIcon
+                        icon={faMoon}
+                        size="lg"
+                    />
+                    :
+                    <FontAwesomeIcon
+                        icon={faSun}
+                        size="lg"
+                    />
+
+            }
         </button>
     )
 }
