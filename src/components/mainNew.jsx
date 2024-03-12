@@ -7,7 +7,3 @@ export function MainNew ({children}){
         </div>
     )
 }
-
-MainNew.propTypes = {
-    children:Proptypes.string,
-}

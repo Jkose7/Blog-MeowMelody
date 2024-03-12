@@ -1,4 +1,3 @@
-import { Nav } from '../components/nav';
 import {useForm} from 'react-hook-form'
 //import { FormError } from '../components/formError';
 
@@ -15,13 +14,8 @@ export function CreateNews () {
     })
 
     return(
-        <section className="bg-emerald-800 flex justify-center items-center flex-col gap-4  absolute h-full w-full">
-            <Nav/>
+        <section className="bg-emerald-800 flex flex-col justify-center items-center gap-4 absolute h-full w-full">
             <h1 className="font-titulos font-semibold text-white text-2xl">New MeowNews</h1>
-
-            
-
-
             <form action="" className="text-white " onSubmit={onSubmit}>
 
                 {/*TITULO */}
