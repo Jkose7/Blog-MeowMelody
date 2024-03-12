@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
+import PropTypes from 'prop-types'
+
 export function ButtonCreateNew({ theme }) {
     const iconColor = theme === 'dark' ? '#1a1a1a' : '#FFFFEC';
 
@@ -13,4 +15,8 @@ export function ButtonCreateNew({ theme }) {
             />
         </div>
     );
+}
+
+ButtonCreateNew.propTypes = {
+    theme: PropTypes.string,
 }
