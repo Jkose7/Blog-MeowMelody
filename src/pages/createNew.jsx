@@ -15,15 +15,13 @@ export function CreateNews() {
   });
 
   return (
-    
-    <section className=" bg-second-color flex justify-center items-center flex-col 
-                        mx-5 md:mx-16 lg:mx-28 xl:mx-80 gap-5 p h-screen ">
 
-      <div className=" ">
-        <form action="" className="text-white max-w-[645px] max-h-[690px]" onSubmit={onSubmit}>
+    <section className=" bg-second-color flex justify-center items-center flex-col mx-5 md:mx-16 lg:mx-28 xl:mx-80 gap-5 p-8 h-full">
+      {/*mx-5 md:mx-16 lg:mx-28 xl:mx-48 2xl:mx-80 gap-5 flex flex-col h-full py-4*/}
+      <form action="" className="text-white w-full h-full flex" onSubmit={onSubmit}>
+        <div className="flex flex-col">
           {/*TITULO */}
-
-          <label htmlFor="titulo" className="block font-texto">
+          <label htmlFor="titulo" className="font-texto">
             Titulo
           </label>
           <input
@@ -73,6 +71,27 @@ export function CreateNews() {
           />
           {errors.Fecha_Publi && <span className="text-sm">{errors.Fecha_Publi.message}</span>}
 
+          {/*IMAGEN */}
+
+          <label htmlFor="img" className="block font-texto">
+            Imagen
+          </label>
+          <input type="file" className="font-titulos mb-3" />
+
+          {/* CONTENIDO ADICIONAL*/}
+
+          <label htmlFor="Contenido-Adicional" className="block font-texto">
+            Contenido Adicional
+          </label>
+          <input
+            type="file"
+            {...register("Contenido-Adicional")}
+            className="w-full  font-titulos mb-3"
+          />
+
+
+        </div>
+        <div>
           {/* CONTENIDO*/}
 
           <label htmlFor="Contenido" className="block font-texto">
@@ -101,29 +120,13 @@ export function CreateNews() {
           ></textarea>
           {errors.Contenido && <span className="text-sm">{errors.Contenido.message}</span>}
 
-          {/*IMAGEN */}
-
-          <label htmlFor="img" className="block font-texto">
-            Imagen
-          </label>
-          <input type="file" className="font-titulos mb-3" />
-
-          {/* CONTENIDO ADICIONAL*/}
-
-          <label htmlFor="Contenido-Adicional" className="block font-texto">
-            Contenido Adicional
-          </label>
-          <input
-            type="file"
-            {...register("Contenido-Adicional")}
-            className="w-full  font-titulos mb-3"
-          />
-
           {/*BTN CREAR*/}
 
           <button type="submit">CREAR</button>
-        </form>
-      </div>
+        </div>
+
+      </form>
+
     </section>
   );
 }
