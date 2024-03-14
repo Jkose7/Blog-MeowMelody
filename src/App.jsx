@@ -8,6 +8,8 @@ import {useEffect, useState} from 'react'
 import { Nav } from './components/nav'
 import { Footer } from './components/footer'
 
+import { News } from './components/News.js'
+
 function App() {
 
   const [theme, setTheme] = useState(() => {
@@ -42,7 +44,7 @@ function App() {
           path='/' element={<Index theme={theme}></Index>}
         ></Route>
         <Route
-          path='/createNew' element={<CreateNews></CreateNews>}
+          path='/createNew' element={<CreateNews News={News}></CreateNews>}
         ></Route>
       </Routes>
 
