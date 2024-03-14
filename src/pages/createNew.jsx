@@ -12,8 +12,6 @@ const schema = yup.object().shape({
   })
 })
 
-
-
 export function CreateNews({News}) {
 
   const {
@@ -26,10 +24,23 @@ export function CreateNews({News}) {
     resolver: yupResolver(schema),
   });
 
-  console.log(errors)
-
   const [image, setImage] = useState('');
   
+
+  const onSubmit = data => {
+   
+    if (data.files.length > 0){
+      convert2base64(data.files[0])
+    }
+    data.fechaActual = new Date();
+    image ? data.files = image : data.files = null
+
+    reset()
+
+    News.push(data)
+    console.log(News)
+  };
+
   const convert2base64 = file =>{
     const reader = new FileReader();
 
@@ -40,25 +51,11 @@ export function CreateNews({News}) {
     reader.readAsDataURL(file)
   }
 
-  const onSubmit = handleSubmit((data) => {
-   
-    if (data.files.length > 0){
-      convert2base64(data.files[0])
-    }
-    data.fechaActual = new Date();
-    data.image = image
-    reset()
-
-    News.push(data)
-    console.log(News)
-  });
-
-
   return (
-
     <section className=" bg-second-color flex justify-center items-center flex-col mx-5 md:mx-16 lg:mx-28 xl:mx-80 gap-5 p-8 h-full">
       {/*mx-5 md:mx-16 lg:mx-28 xl:mx-48 2xl:mx-80 gap-5 flex flex-col h-full py-4*/}
-      <form action="" className="text-white w-full h-full " onSubmit={onSubmit}>
+      {image ? console.log(image) : console.log("no hay imagen")}
+      <form action="" className="text-white w-full h-full overflow-y-scroll overflow-hidden" onSubmit={handleSubmit(onSubmit)}>
           {/*TITULO */}
           <label htmlFor="titulo" className="font-texto">
             Titulo
@@ -91,8 +88,8 @@ export function CreateNews({News}) {
           <textarea
             name=""
             id=""
-            cols="30"
-            rows="10"
+            cols="10"
+            rows="5"
             {...register("contenido", {
               required: {
                 value: true,
@@ -114,12 +111,13 @@ export function CreateNews({News}) {
           {/*IMAGEN */}
           {!watch('files') || watch('files'.length === 0) ? (
             <div>
-              <label htmlFor="img" className="block font-texto">
-                   Imagen
+              <label htmlFor="fileupload" className="block font-texto">
+                   Select File
               </label>
               <input 
+                id='fileupload'
                 type="file" 
-                {...register("img")}
+                {...register("files")}
                 className="font-titulos mb-3"
               />
             </div>
