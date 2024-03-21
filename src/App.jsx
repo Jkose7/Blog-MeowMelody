@@ -22,6 +22,7 @@ function App() {
             path="/createNew"
             element={<CreateNews News={News}></CreateNews>}
           ></Route>
+          
         </Routes>
 
         <Footer />
