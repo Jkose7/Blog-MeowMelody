@@ -3,12 +3,11 @@ import "./App.css";
 
 import { Index } from "./pages/index";
 import { CreateNews } from "./pages/createNew";
-
 import { Nav } from "./components/nav";
 import { Footer } from "./components/footer";
 
-import { News } from "./components/News.js";
 import { ThemeProviter } from "./providers/ThemeProviter.jsx";
+
 
 function App() {
   return (
@@ -20,7 +19,7 @@ function App() {
           <Route path="/" element={<Index ></Index>}></Route>
           <Route
             path="/createNew"
-            element={<CreateNews News={News}></CreateNews>}
+            element={<CreateNews></CreateNews>}
           ></Route>
           
         </Routes>

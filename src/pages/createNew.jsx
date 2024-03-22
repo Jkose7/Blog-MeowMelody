@@ -1,40 +1,54 @@
 import { useForm } from "react-hook-form";
-import PropTypes from 'prop-types'
 import { useState } from 'react';
 
+import PropTypes from 'prop-types'
 
+import { useImageURL } from "../hooks/useImageURL";
 
-export function CreateNews({ News }) {
-
+export function CreateNews() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [image, setImage] = useState(null);
+  const [data, setData] = useState({})
+  const { imageURL, handleImage } = useImageURL()
 
-  const onSubmit = handleSubmit((data) => {
-    const { titulo, } = data
-    console.log(titulo)
-  });
+  const [content, setContent] = useState(null)
+  const [contentURL, setContentURL] = useState(null)
 
-  const handleImage = (e) => {
-    const newImage = e.target.files[0]
-    setImage(newImage)
+  const handleContent = (e) =>{
+    const newContent = e.target.files[0]
+    setContent(newContent)
   }
 
-  if (image) {
+  if (content) {
     const readerImage = new FileReader();
     readerImage.onload = () => {
-      readerImage.result
+      const contentURL = readerImage.result
+      setContentURL(contentURL)
     }
-    readerImage.readAsDataURL(image)
+    readerImage.readAsDataURL(content)
   }
+
+  const onSubmit = handleSubmit((data) => {
+    const { titulo, contenido} = data
+
+    setData({
+      title: titulo,
+      content: contenido,
+      image: imageURL,
+      additionalContent: contentURL
+    })
+
+  });
+
 
   return (
     <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[90vh]">
-      {image ? console.log(image) : null}
+      {content ? console.log(content) : null}
+      {data ? console.log(data) : null}
       <form action="" className="text-second-colordark:bg-primary-color w-full h-full flex flex-col justify-center gap-3" onSubmit={onSubmit}>
         {/*TITULO */}
         <label htmlFor="titulo" className="font-texto dark:text-primary-color font-bold">
@@ -61,7 +75,7 @@ export function CreateNews({ News }) {
         {errors.titulo && <span className="text-sm">{errors.titulo.message}</span>}
 
         {/* CONTENIDO*/}
-        <label htmlFor="contenido" className="font-texto dark:text-primary-color font-bold">
+        <label htmlFor="contenido" className="font-texto dark:text-primary-color text-second-color font-bold">
           Contenido
         </label>
         <textarea
@@ -83,7 +97,7 @@ export function CreateNews({ News }) {
               message: "Tu contenido debe ser menos extenso",
             },
           })}
-          className="w-full font-titulos text-white pb-2 mr-2 border-b-2 border-r-2 border-second-color dark:border-white bg-transparent focus:outline-none"
+          className="w-full font-titulos dark:text-primary-color text-second-color pb-2 mr-2 border-b-2 border-r-2 border-second-color dark:border-white bg-transparent focus:outline-none"
         ></textarea>
         {errors.contenido && <span className="text-sm">{errors.contenido.message}</span>}
 
@@ -113,6 +127,7 @@ export function CreateNews({ News }) {
               type="file"
               {...register("adicional")}
               className="w-full font-titulos mb-3"
+              onChange={(e) => handleContent(e)}
             />
           </div>
 

@@ -3,7 +3,7 @@ import { faGithub, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-i
 
 export function Footer() {
     return (
-        <section className=" flex items-center">
+        <section className="flex items-center">
             <footer className="bg-transparent w-full items-center flex justify-between dark:text-primary-color">
                 <div className="">
                     <h1 className="font-text-alt font-bold">By <span className="text-xl font-titulos font-extrabold">
