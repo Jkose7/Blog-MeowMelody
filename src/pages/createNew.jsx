@@ -4,6 +4,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types'
 
 import { useImageURL } from "../hooks/useImageURL";
+import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 
 export function CreateNews() {
   const {
@@ -14,23 +15,8 @@ export function CreateNews() {
 
   const [data, setData] = useState({})
   const { imageURL, handleImage } = useImageURL()
+  const { contenidoAUrl, handleContenidoA} = useContenidoAdicional()
 
-  const [content, setContent] = useState(null)
-  const [contentURL, setContentURL] = useState(null)
-
-  const handleContent = (e) =>{
-    const newContent = e.target.files[0]
-    setContent(newContent)
-  }
-
-  if (content) {
-    const readerImage = new FileReader();
-    readerImage.onload = () => {
-      const contentURL = readerImage.result
-      setContentURL(contentURL)
-    }
-    readerImage.readAsDataURL(content)
-  }
 
   const onSubmit = handleSubmit((data) => {
     const { titulo, contenido} = data
@@ -39,7 +25,7 @@ export function CreateNews() {
       title: titulo,
       content: contenido,
       image: imageURL,
-      additionalContent: contentURL
+      additionalContent: contenidoAUrl
     })
 
   });
@@ -47,7 +33,7 @@ export function CreateNews() {
 
   return (
     <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[90vh]">
-      {content ? console.log(content) : null}
+      {contenidoAUrl ? console.log(contenidoAUrl) : null}
       {data ? console.log(data) : null}
       <form action="" className="text-second-colordark:bg-primary-color w-full h-full flex flex-col justify-center gap-3" onSubmit={onSubmit}>
         {/*TITULO */}
@@ -127,7 +113,7 @@ export function CreateNews() {
               type="file"
               {...register("adicional")}
               className="w-full font-titulos mb-3"
-              onChange={(e) => handleContent(e)}
+              onChange={(e) => handleContenidoA(e)}
             />
           </div>
 
