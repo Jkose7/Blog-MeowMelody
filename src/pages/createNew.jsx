@@ -15,7 +15,7 @@ export function CreateNews({ News }) {
   const [image, setImage] = useState(null);
 
   const onSubmit = handleSubmit((data) => {
-    const {titulo, } = data
+    const { titulo, } = data
     console.log(titulo)
   });
 
@@ -33,11 +33,11 @@ export function CreateNews({ News }) {
   }
 
   return (
-    <section className=" bg-second-color flex justify-center items-center flex-col mx-5 md:mx-16 lg:mx-28 xl:mx-80 gap-5 p-8 h-full">
+    <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[90vh]">
       {image ? console.log(image) : null}
-      <form action="" className="text-white w-full h-full overflow-y-scroll overflow-hidden" onSubmit={onSubmit}>
+      <form action="" className="text-second-colordark:bg-primary-color w-full h-full flex flex-col justify-center gap-3" onSubmit={onSubmit}>
         {/*TITULO */}
-        <label htmlFor="titulo" className="font-texto">
+        <label htmlFor="titulo" className="font-texto dark:text-primary-color font-bold">
           Titulo
         </label>
         <input
@@ -56,19 +56,19 @@ export function CreateNews({ News }) {
               message: "El titulo debe tener menos caracteres",
             },
           })}
-          className="w-full pb-2 border-b-2 border-white bg-transparent focus:outline-none text-4xl font-titulos"
+          className="w-full pb-2 border-b-2 border-second-color dark:border-white bg-transparent focus:outline-none text-4xl font-titulos"
         />
         {errors.titulo && <span className="text-sm">{errors.titulo.message}</span>}
 
         {/* CONTENIDO*/}
-        <label htmlFor="contenido" className="block font-texto">
+        <label htmlFor="contenido" className="font-texto dark:text-primary-color font-bold">
           Contenido
         </label>
         <textarea
           name=""
           id=""
           cols="10"
-          rows="5"
+          rows="15"
           {...register("contenido", {
             required: {
               value: true,
@@ -83,38 +83,43 @@ export function CreateNews({ News }) {
               message: "Tu contenido debe ser menos extenso",
             },
           })}
-          className="w-full font-titulos text-white pb-2 mr-2 border-b-2 border-r-2 border-white bg-transparent focus:outline-none"
+          className="w-full font-titulos text-white pb-2 mr-2 border-b-2 border-r-2 border-second-color dark:border-white bg-transparent focus:outline-none"
         ></textarea>
         {errors.contenido && <span className="text-sm">{errors.contenido.message}</span>}
 
-        {/*IMAGEN */}
 
-        <div>
-          <label htmlFor="fileupload" className="block font-texto">
-            Select File
-          </label>
-          <input
-            id='fileupload'
-            type="file"
-            {...register("files")}
-            className="font-titulos mb-3"
-            onChange={(e) => handleImage(e)}
-          />
+        <div className="flex w-full justify-between">
+          <div className="flex flex-col w-full">
+            {/* IMAGEN*/}
+            <label htmlFor="fileupload" className="block dark:text-primary-color font-texto font-bold">
+              Select File
+            </label>
+            <input
+              id='fileupload'
+              type="file"
+              {...register("files")}
+              className="font-titulos mb-3 flex flex-col"
+              onChange={(e) => handleImage(e)}
+            />
+            {errors.img && <span className='text-sm'>{errors.img.message}</span>}
+          </div>
+
+          <div className="flex flex-col w-full">
+            {/* CONTENIDO ADICIONAL*/}
+            <label htmlFor="adicional" className="block dark:text-primary-color font-texto font-bold">
+              Contenido Adicional
+            </label>
+            <input  
+              type="file"
+              {...register("adicional")}
+              className="w-full font-titulos mb-3"
+            />
+          </div>
+
         </div>
-        {errors.img && <span className='text-sm'>{errors.img.message}</span>}
-
-        {/* CONTENIDO ADICIONAL*/}
-        <label htmlFor="adicional" className="block font-texto">
-          Contenido Adicional
-        </label>
-        <input
-          type="file"
-          {...register("adicional")}
-          className="w-full font-titulos mb-3"
-        />
 
         {/*BTN CREAR*/}
-        <button type="submit">CREAR</button>
+        <button type="submit" className="dark:text-primary-color text-second-color">CREAR</button>
       </form>
 
     </section>
