@@ -2,8 +2,13 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import PropTypes from 'prop-types'
+import { useThemeContext, useChangeThemeContext } from "../providers/ThemeProviter"
 
-export function ChangeTheme({ toggleTheme, theme }) {
+export function ChangeTheme() {
+
+    const theme = useThemeContext()
+    const toggleTheme = useChangeThemeContext()
+
     return (
         <button onClick={toggleTheme}>
             {

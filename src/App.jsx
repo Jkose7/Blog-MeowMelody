@@ -1,57 +1,34 @@
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
 
-import { Index } from './pages/index'
-import { CreateNews } from './pages/createNew'
+import { Index } from "./pages/index";
+import { CreateNews } from "./pages/createNew";
 
-import {useEffect, useState} from 'react'
-import { Nav } from './components/nav'
-import { Footer } from './components/footer'
+import { Nav } from "./components/nav";
+import { Footer } from "./components/footer";
 
-import { News } from './components/News.js'
+import { News } from "./components/News.js";
+import { ThemeProviter } from "./providers/ThemeProviter.jsx";
 
 function App() {
-
-  const [theme, setTheme] = useState(() => {
-    if (window.matchMedia("(prefers-colors-sheme: dark)").matches) {
-      return 'dark'
-    }
-
-    return 'light'
-  })
-
-  useEffect(() => {
-    theme === 'dark' ?
-      document.querySelector('html').classList.add('dark')
-      :
-      document.querySelector('html').classList.remove('dark')
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
-
-
   return (
-    <main className='bg-primary-color dark:bg-second-color -z-10 h-full w-full absolute flex flex-col justify-center py-6'>
-      <Nav 
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />
+    <ThemeProviter>
+      <main className="bg-primary-color dark:bg-second-color -z-10 h-full w-full absolute flex flex-col justify-center py-6">
+        <Nav />
 
-      <Routes>
-        <Route
-          path='/' element={<Index theme={theme}></Index>}
-        ></Route>
-        <Route
-          path='/createNew' element={<CreateNews News={News}></CreateNews>}
-        ></Route>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Index ></Index>}></Route>
+          <Route
+            path="/createNew"
+            element={<CreateNews News={News}></CreateNews>}
+          ></Route>
+          
+        </Routes>
 
-      <Footer/>
-
-    </main>
-  )
+        <Footer />
+      </main>
+    </ThemeProviter>
+  );
 }
 
-export default App
+export default App;
