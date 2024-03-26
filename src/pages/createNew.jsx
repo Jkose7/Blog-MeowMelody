@@ -1,41 +1,50 @@
 import { useForm } from "react-hook-form";
-import { useState } from 'react';
-
+import { useState } from "react";
 import PropTypes from 'prop-types'
 
 import { useImageURL } from "../hooks/useImageURL";
 import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 
+
+//import { useCreateNewContext } from "../providers/NewProviter"
+
 export function CreateNews() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const [data, setData] = useState({})
+  
   const { imageURL, handleImage } = useImageURL()
   const { contenidoAUrl, handleContenidoA} = useContenidoAdicional()
 
+  //const onSubmit  = useCreateNewContext()
 
-  const onSubmit = handleSubmit((data) => {
-    const { titulo, contenido} = data
+  const [datos, setDatos] = useState([]);
 
-    setData({
-      title: titulo,
-      content: contenido,
+  const onSubmit = (data) => {
+    const nuevoObjeto = {
+      title: data.titulo,
+      content: data.contenido,
       image: imageURL,
-      additionalContent: contenidoAUrl
-    })
+      additionalContent: contenidoAUrl,
+    };
 
-  });
+    setDatos([...datos, nuevoObjeto]);
+
+    reset()
+
+    
+  };
+  console.log(datos)
 
 
   return (
     <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[90vh]">
-      {contenidoAUrl ? console.log(contenidoAUrl) : null}
-      {data ? console.log(data) : null}
-      <form action="" className="text-second-colordark:bg-primary-color w-full h-full flex flex-col justify-center gap-3" onSubmit={onSubmit}>
+      <form action="" className="text-second-colordark:bg-primary-color w-full h-full flex flex-col justify-center gap-3" 
+      onSubmit={handleSubmit(onSubmit)}>
         {/*TITULO */}
         <label htmlFor="titulo" className="font-texto dark:text-primary-color font-bold">
           Titulo
@@ -68,7 +77,7 @@ export function CreateNews() {
           name=""
           id=""
           cols="10"
-          rows="15"
+          rows="12"
           {...register("contenido", {
             required: {
               value: true,
