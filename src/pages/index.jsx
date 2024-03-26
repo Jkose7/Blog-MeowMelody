@@ -1,28 +1,26 @@
-import { AsideNews } from "../components/asideNews"
+import { NewsContent } from "../components/NewsContent"
 import { ButtonCreateNew } from "../components/buttonCreateNew"
-import { MainNew } from "../components/mainNew"
+
 
 export function Index() {
     return (
         <section className="gap-5 flex flex-col h-full py-4">
             <section className="h-full flex gap-1 flex-col">
 
-                <MainNew>
-                    <ButtonCreateNew/>
-                </MainNew>
+                <NewsContent>
+                    <ButtonCreateNew />
+                </NewsContent>
 
                 <div className="flex flex-col sm:flex-row gap-1 h-4/5">
-                    <AsideNews>
-                        <ButtonCreateNew/>
-                    </AsideNews>
-
-                    <AsideNews>
-                        <ButtonCreateNew/>
-                    </AsideNews>
-
-                    <AsideNews>
-                        <ButtonCreateNew/>
-                    </AsideNews>
+                    <NewsContent>
+                        <ButtonCreateNew />
+                    </NewsContent>
+                    <NewsContent>
+                        <ButtonCreateNew />
+                    </NewsContent>
+                    <NewsContent>
+                        <ButtonCreateNew />
+                    </NewsContent>
 
                 </div>
             </section>
