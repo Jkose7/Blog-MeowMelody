@@ -1,18 +1,19 @@
+import { useNewContext } from "../providers/NewProviter"
 
-import PropTypes from 'prop-types'
 
-export function NewsContent ({Titulo,Descripcion,Imagen,Contenido_adicional,children}) {
-    return(
-        <article className="bg-second-color rounded-sm dark:bg-primary-color h-full w-full flex items-center justify-center relative">
-            {children}
-        </article>
+export function NewsContent() {
+    const datos = useNewContext()
+
+    return (
+        <>
+            {
+                datos && datos.length !== 0 &&
+                datos?.slice(1).map(dato => (
+                    <article key={dato.title} className="bg-second-color rounded-sm dark:bg-primary-color h-full min-h-96 w-full flex items-center justify-center relative">
+                        <h1>{dato.title}</h1>
+                    </article>
+                ))
+            }
+        </>
     )
-}
-
-NewsContent.propTypes = {
-    Titulo: PropTypes.string,
-    Descripcion: PropTypes.string,
-    Imagen: PropTypes.any,
-    Contenido_adicional: PropTypes.any,
-    children: PropTypes.any,
 }

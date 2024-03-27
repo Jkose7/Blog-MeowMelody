@@ -11,8 +11,9 @@ import { NewProviter } from "./providers/NewProviter.jsx";
 
 function App() {
   return (
-    <ThemeProviter>
-        <main className="bg-primary-color dark:bg-second-color -z-10 h-full w-full absolute flex flex-col justify-center py-6 px-5 md:px-16 lg:px-28 xl:px-48 2xl:px-80">
+    <NewProviter>
+      <ThemeProviter>
+        <main className="bg-primary-color dark:bg-second-color -z-10 w-full h-[100vh] flex flex-col justify-center py-10 md:px-16 lg:px-28 xl:px-48 2xl:px-80">
           <Nav />
 
           <Routes>
@@ -22,10 +23,11 @@ function App() {
               element={<CreateNews></CreateNews>}
             ></Route>
           </Routes>
-
+          
           <Footer />
         </main>
-    </ThemeProviter>
+      </ThemeProviter>
+    </NewProviter>
   );
 }
 

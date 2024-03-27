@@ -1,14 +1,16 @@
-import { createContext, useContext } from "react";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { redirect } from "react-router-dom";
+
+import { createContext, useContext, useState } from "react";
 
 import { useImageURL } from "../hooks/useImageURL";
 import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 
+import PropTypes from 'prop-types'
+
 const newContext = createContext();
 const createNewContext = createContext();
 
-{/*custom hook */}
+//CUSTOM HOOK
 
 export const useNewContext = () => { 
   return useContext(newContext);
@@ -18,18 +20,17 @@ export const useCreateNewContext = () => {
   return useContext(createNewContext);
 };
 
-{/*funcion */}
+//FUNCION 
 
 export const NewProviter = ({ children }) => {
+
   const [datos, setDatos] = useState([]);
 
+  const { imageURL, handleImage } = useImageURL()
+  const { contenidoAUrl, handleContenidoA } = useContenidoAdicional() 
 
-  const imageURL = useImageURL();
-  const contenidoAUrl = useContenidoAdicional();
+  const onSubmit = data => {
 
-    const {reset} = useForm()
-
-  const onSubmit = (data) => {
     const nuevoObjeto = {
       title: data.titulo,
       content: data.contenido,
@@ -38,18 +39,22 @@ export const NewProviter = ({ children }) => {
     };
 
     setDatos([...datos, nuevoObjeto]);
-
-    reset()
-
-    
+    redirect("/")
+    document.getElementById('myform').reset()
+   
   };
+
   console.log(datos)
 
   return (
     <newContext.Provider value={datos}> {/*datos a cambiar */}
-      <createNewContext.Provider value={onSubmit}> {/*funcion q cambia dato */}
+      <createNewContext.Provider value={{onSubmit, handleContenidoA, handleImage}}> {/*funcion q cambia dato */}
         {children}
       </createNewContext.Provider>
     </newContext.Provider>
   );
 };
+
+NewProviter.propTypes = {
+  children: PropTypes.any
+}
