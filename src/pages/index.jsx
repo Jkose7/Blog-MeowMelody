@@ -25,7 +25,7 @@ export function Index() {
                     {datos.length > 1 && <NewsContent />}
 
                     {/* Contenedores pequeños adicionales */}
-                    {Array.from({ length: 4 - Math.max(1, datos.length - 1) }).map((_, index) => (
+                    {Array.from({ length: 3 - Math.max(0, datos.length - 1) }).map((_, index) => (
                         <NoNewContent key={index} />
                     ))}
                 </div>
