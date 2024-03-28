@@ -54,8 +54,8 @@ export function CreateNews() {
         <textarea
           name=""
           id=""
-          cols="10"
-          rows="12"
+          cols="2"
+          rows="5"
           {...register("contenido", {
             required: {
               value: true,

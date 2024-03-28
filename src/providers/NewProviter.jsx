@@ -39,9 +39,10 @@ export const NewProviter = ({ children }) => {
     };
 
     setDatos([...datos, nuevoObjeto]);
-    redirect("/")
+    handleImage({ target: { files: [] } });
+
+    //Resetear formulario
     document.getElementById('myform').reset()
-   
   };
 
   console.log(datos)

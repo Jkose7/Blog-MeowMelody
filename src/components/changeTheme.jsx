@@ -10,7 +10,7 @@ export function ChangeTheme() {
     const toggleTheme = useChangeThemeContext()
 
     return (
-        <button onClick={toggleTheme}>
+        <button onClick={toggleTheme} className="transition-all hover:scale-125">
             {
                 theme === 'light' ?
                     <FontAwesomeIcon

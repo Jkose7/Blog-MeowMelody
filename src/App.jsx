@@ -13,17 +13,24 @@ function App() {
   return (
     <NewProviter>
       <ThemeProviter>
-        <main className="bg-primary-color dark:bg-second-color -z-10 w-full h-[100vh] flex flex-col justify-center py-10 md:px-16 lg:px-28 xl:px-48 2xl:px-80">
+        <main className="bg-primary-color dark:bg-second-color -z-10 w-full h-[100vh] flex flex-col justify-center py-10 md:px-16 lg:px-28 xl:px-48 2xl:px-80 gap-2">
           <Nav />
 
           <Routes>
-            <Route path="/" element={<Index></Index>}></Route>
+            <Route
+              path="/"
+              element={<Index></Index>}
+            />
             <Route
               path="/createNew"
               element={<CreateNews></CreateNews>}
-            ></Route>
+            />
+            <Route
+              path="/news/:title"
+              element={<h1>Noticia</h1>}
+            />
           </Routes>
-          
+
           <Footer />
         </main>
       </ThemeProviter>
