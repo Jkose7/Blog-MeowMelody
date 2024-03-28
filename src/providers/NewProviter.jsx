@@ -27,7 +27,7 @@ export const NewProviter = ({ children }) => {
   const [datos, setDatos] = useState([]);
 
   const { imageURL, handleImage } = useImageURL()
-  const { contenidoAUrl, handleContenidoA } = useContenidoAdicional() 
+  const { contenidoAUrl, typeContent, handleContenidoA } = useContenidoAdicional() 
 
   const onSubmit = data => {
 
@@ -36,6 +36,7 @@ export const NewProviter = ({ children }) => {
       content: data.contenido,
       image: imageURL,
       additionalContent: contenidoAUrl,
+      typeContent: typeContent,
     };
 
     setDatos([...datos, nuevoObjeto]);

@@ -13,34 +13,40 @@ export function Index() {
                 {/* Contenedor grande */}
                 {datos.length >= 1 &&
                     datos?.slice(0, 1).map((dato, index) => (
-                        <article key={dato.title} className="bg-second-color rounded-sm dark:bg-primary-color h-full w-full flex items-center justify-center">
+                        <article key={dato.title} className="bg-second-color rounded-sm dark:bg-primary-color h-full w-full flex text-primary-color dark:text-second-color">
                             {
                                 dato.image !== null &&
-                                <div className="w-full h-2/6">
+                                <div className="w-full h-full">
                                     <img
-                                        className="w-full h-full object-cover aspect-auto grayscale rounded-md"
+                                        className="w-full h-full object-cover aspect-auto grayscale"
                                         src={dato.image}
                                         alt=""
                                     />
                                 </div>
                             }
 
-                            <div className="h-full w-full flex flex-col">
-                                <div className="h-1/3 w-full text-3xl font-titulos font-bold flex items-center">
-                                    <h1 className="overflow-hidden truncate capitalize">{dato.title}</h1>
+                            <div className="w-full h-full flex flex-col p-4">
+
+                                <div className="w-full h-5/6 flex flex-col gap-4">
+                                    <div className="w-full text-3xl font-titulos font-bold flex items-center">
+                                        <h1 className="overflow-hidden truncate capitalize">{dato.title}</h1>
+                                    </div>
+                                    <div className="w-full h-full max-h-48 overflow-hidden text-ellipsis text-xl">
+                                        <p className="text-balance break-words">{dato.content}</p>
+                                    </div>
                                 </div>
-                                <div className="h-2/3 w-full overflow-hidden overflow-ellipsis flex text-sm">
-                                    <p className="text-balance">{dato.content}</p>
+
+                                <div className="w-full h-1/6 flex flex-col-reverse justify-center">
+                                    <div className="flex flex-row-reverse">
+                                        <Link
+                                            to={`/news/${dato.title}`}
+                                            className="font-texto font-semibold px-2 transition-all bg-primary-color text-second-color dark:text-primary-color dark:bg-second-color rounded-sm">
+                                            ver mas
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="max-h-4 w-full flex flex-row-reverse items-center">
-                                <Link
-                                    to={`/news/${dato.title}`}
-                                    className="font-texto font-semibold px-2 transition-all bg-primary-color text-second-color rounded-sm">
-                                    ver mas
-                                </Link>
-                            </div>
                         </article>
                     ))}
 
