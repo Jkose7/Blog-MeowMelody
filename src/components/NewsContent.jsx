@@ -9,14 +9,14 @@ export function NewsContent() {
         <>
             {
                 datos && datos.length !== 0 &&
-                datos?.slice(1).map((dato, index) => (
+                datos?.slice(1).map((dato) => (
                     <article key={dato.title} className="bg-second-color dark:bg-primary-color rounded-sm h-full min-h-32 w-full flex flex-col items-center justify-center text-primary-color dark:text-second-color">
 
-                        <div className={`w-full ${dato.image !== null || dato.additionalContent !== null ? 'h-2/6' : 'h-0'} flex`}>
+                        <div className={`w-full ${dato.image !== null || dato.additionalContent !== null ? 'h-2/6' : 'h-0'} flex mb-2`}>
                             {
                                 dato.image !== null &&
                                 <img
-                                    className={`${datos.additionalContent !== null ? 'w-1/2' : 'w-full'} object-cover aspect-auto grayscale`}
+                                    className={`${dato.additionalContent !== null ? 'w-1/2' : 'w-full'} object-cover aspect-auto grayscale`}
                                     src={dato.image}
                                     alt=""
                                 />

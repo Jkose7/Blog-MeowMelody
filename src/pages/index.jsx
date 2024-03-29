@@ -20,7 +20,7 @@ export function Index() {
                                 {
                                     dato.image !== null &&
                                     <img
-                                        className={`w-full object-cover aspect-auto ${datos.additionalContent !== null ? 'h-1/2' : 'h-full'} grayscale`}
+                                        className={`w-full object-cover aspect-auto ${dato.additionalContent !== null ? 'h-1/2' : 'h-full'} grayscale`}
                                         src={dato.image}
                                         alt=""
                                     />
@@ -35,18 +35,18 @@ export function Index() {
                                 }
                             </div>
 
-                            <div className="w-full h-1/2 flex flex-col p-4">
+                            <div className="w-full h-full flex flex-col p-4">
 
-                                <div className="w-full h-5/6 flex flex-col gap-4">
+                                <div className="w-full h-[90%] flex flex-col gap-4">
                                     <div className="w-full text-3xl font-titulos font-bold flex items-center">
                                         <h1 className="overflow-hidden truncate capitalize">{dato.title}</h1>
                                     </div>
-                                    <div className="w-full h-full max-h-48 overflow-hidden text-ellipsis text-xl">
+                                    <div className="w-full h-full overflow-hidden text-ellipsis text-xl">
                                         <p className="text-balance break-words">{dato.content}</p>
                                     </div>
                                 </div>
 
-                                <div className="w-full h-1/6 flex flex-col-reverse">
+                                <div className="w-full h-[10%] min-h-6 flex flex-col-reverse">
                                     <div className="flex flex-row-reverse">
                                         <Link
                                             to={`/news/${dato.title}`}
