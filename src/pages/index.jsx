@@ -13,7 +13,7 @@ export function Index() {
             <section className="flex flex-col h-1/2">
                 {/* Contenedor grande */}
                 {datos.length >= 1 &&
-                    datos?.slice(0, 1).map((dato, index) => (
+                    datos?.slice(0, 1).map((dato) => (
                         <article key={dato.title} className="bg-second-color rounded-sm dark:bg-primary-color h-full w-full flex text-primary-color dark:text-second-color">
 
                             <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-full' : 'w-0'} flex flex-col h-full`}>

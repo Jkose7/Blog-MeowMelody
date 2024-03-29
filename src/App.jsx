@@ -9,6 +9,8 @@ import { Footer } from "./components/footer";
 import { ThemeProviter } from "./providers/ThemeProviter.jsx";
 import { NewProviter } from "./providers/NewProviter.jsx";
 
+import { ViewNews } from "./pages/viewNews.jsx";
+
 function App() {
   return (
     <NewProviter>
@@ -27,7 +29,7 @@ function App() {
             />
             <Route
               path="/news/:title"
-              element={<h1>Noticia</h1>}
+              element={<ViewNews></ViewNews>}
             />
           </Routes>
 
