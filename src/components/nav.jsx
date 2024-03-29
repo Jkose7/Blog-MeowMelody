@@ -11,20 +11,18 @@ export function Nav() {
     const toggleTheme = useChangeThemeContext()
 
     return (
-        <section className=""> 
-            <nav className="bg-transparent flex justify-between font-titulos font-bold items-center text-black dark:text-primary-color h-14">
-                <Link className="text-3xl z-10" to="/">
-                    MeowMelody
-                </Link>
+        <nav className="bg-transparent flex justify-between font-titulos font-bold items-center text-black dark:text-primary-color h-14">
+            <Link className="text-3xl z-10" to="/">
+                MeowMelody
+            </Link>
 
-                <div className="">
-                    <Link className="text-xl px-3 py-1" to='/createNew'>
-                        Create
-                    </Link>
-                    <ChangeTheme theme={theme} toggleTheme={toggleTheme}></ChangeTheme>
-                </div>
-            </nav>
-        </section>
+            <div className="">
+                <Link className="text-xl px-3 py-1" to='/createNew'>
+                    Create
+                </Link>
+                <ChangeTheme theme={theme} toggleTheme={toggleTheme}></ChangeTheme>
+            </div>
+        </nav>
     )
 }
 

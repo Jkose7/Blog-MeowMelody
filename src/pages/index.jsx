@@ -9,7 +9,7 @@ export function Index() {
     const datos = useNewContext()
 
     return (
-        <>
+        <div className="flex flex-col h-screen w-full gap-2">
             <section className="flex flex-col h-1/2">
                 {/* Contenedor grande */}
                 {datos.length >= 1 &&
@@ -35,7 +35,7 @@ export function Index() {
                                 }
                             </div>
 
-                            <div className="w-full h-full flex flex-col p-4">
+                            <div className="w-full h-1/2 flex flex-col p-4">
 
                                 <div className="w-full h-5/6 flex flex-col gap-4">
                                     <div className="w-full text-3xl font-titulos font-bold flex items-center">
@@ -74,9 +74,6 @@ export function Index() {
                     <NoNewContent key={index} />
                 ))}
             </div>
-
-        </>
-
-
+        </div>
     )
 }
