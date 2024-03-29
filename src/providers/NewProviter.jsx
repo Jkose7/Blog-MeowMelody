@@ -41,6 +41,7 @@ export const NewProviter = ({ children }) => {
 
     setDatos([...datos, nuevoObjeto]);
     handleImage({ target: { files: [] } });
+    handleContenidoA({ target: { files: [] } });
 
     //Resetear formulario
     document.getElementById('myform').reset()

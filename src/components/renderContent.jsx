@@ -1,11 +1,11 @@
 export const RenderContent = ({content, typeContent}) => {
     switch (typeContent) {
         case 'audio/mpeg':
-            return <audio src={content} controls />;
+            return <audio className="w-full h-full" src={content} controls />;
         case 'application/pdf':
-            return <iframe src={content} title="PDF Document" width="100%" height="100%" />;
-        case 'img':
-            return <img src={content} alt="" />;
+            return <iframe className="w-full h-full object-cover" src={content} title="PDF Document"/>;
+        case 'image/jpeg':
+            return <img className="w-full h-full object-cover aspect-auto grayscale" src={content} alt="" />;
         default:
             return null; // Manejo de tipo de contenido desconocido
     }

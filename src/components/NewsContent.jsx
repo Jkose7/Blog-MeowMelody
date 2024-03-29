@@ -16,7 +16,7 @@ export function NewsContent() {
                             {
                                 dato.image !== null &&
                                 <img
-                                    className="w-full h-full object-cover aspect-auto grayscale"
+                                    className={`${datos.additionalContent !== null ? 'w-1/2' : 'w-full'} object-cover aspect-auto grayscale`}
                                     src={dato.image}
                                     alt=""
                                 />

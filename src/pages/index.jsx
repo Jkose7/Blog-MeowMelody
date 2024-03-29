@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { NewsContent } from "../components/NewsContent"
 import { NoNewContent } from "../components/NoNewContent"
 import { useNewContext } from "../providers/NewProviter"
+import { RenderContent } from "../components/renderContent"
 
 export function Index() {
     const datos = useNewContext()
@@ -14,16 +15,25 @@ export function Index() {
                 {datos.length >= 1 &&
                     datos?.slice(0, 1).map((dato, index) => (
                         <article key={dato.title} className="bg-second-color rounded-sm dark:bg-primary-color h-full w-full flex text-primary-color dark:text-second-color">
-                            {
-                                dato.image !== null &&
-                                <div className="w-full h-full">
+
+                            <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-full' : 'w-0'} flex flex-col h-full`}>
+                                {
+                                    dato.image !== null &&
                                     <img
-                                        className="w-full h-full object-cover aspect-auto grayscale"
+                                        className={`w-full object-cover aspect-auto ${datos.additionalContent !== null ? 'h-1/2' : 'h-full'} grayscale`}
                                         src={dato.image}
                                         alt=""
                                     />
-                                </div>
-                            }
+                                }
+                                {
+                                    <div className={`${dato.image !== null ? 'h-1/2' : 'h-full'}`}>
+                                        <RenderContent
+                                            content={dato.additionalContent}
+                                            typeContent={dato.typeContent}
+                                        />
+                                    </div>
+                                }
+                            </div>
 
                             <div className="w-full h-full flex flex-col p-4">
 
@@ -36,7 +46,7 @@ export function Index() {
                                     </div>
                                 </div>
 
-                                <div className="w-full h-1/6 flex flex-col-reverse justify-center">
+                                <div className="w-full h-1/6 flex flex-col-reverse">
                                     <div className="flex flex-row-reverse">
                                         <Link
                                             to={`/news/${dato.title}`}
