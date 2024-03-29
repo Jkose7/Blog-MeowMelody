@@ -40,7 +40,7 @@ export function NewsContent() {
 
                         <div className="h-1/6 w-full flex flex-row-reverse px-3 items-center">
                             <Link
-                                to={`/news/${dato.title}`}
+                                to={`/news/${dato.id}`}
                                 className="font-texto text-xs font-semibold px-2 transition-all bg-primary-color text-second-color rounded-sm dark:text-primary-color dark:bg-second-color">
                                 ver mas
                             </Link>

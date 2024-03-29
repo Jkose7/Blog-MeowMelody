@@ -28,9 +28,18 @@ export const NewProviter = ({ children }) => {
   const { imageURL, handleImage } = useImageURL()
   const { contenidoAUrl, typeContent, handleContenidoA } = useContenidoAdicional() 
 
+  const [newsId, setNewsIde] = useState(1)
+
+  const incrementoId = () => {
+    setNewsIde (newsId + 1)
+  }
+
   const onSubmit = data => {
+    incrementoId()
 
     const nuevoObjeto = {
+      id: newsId,
+      fecha: new Date(),
       title: data.titulo,
       content: data.contenido,
       image: imageURL,

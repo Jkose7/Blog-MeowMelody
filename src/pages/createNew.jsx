@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { useCreateNewContext } from "../providers/NewProviter";
 
 
+
 //import { useCreateNewContext } from "../providers/NewProviter"
 
 export function CreateNews() {
@@ -16,13 +17,21 @@ export function CreateNews() {
     formState: { errors },
   } = useForm();
 
+  //id de la noticia
+
+  
+  
+
+
   return (
-    <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh]">
+    <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh] dark:text-primary-color">
       <form 
       id="myform"
       action="" 
       className="text-second-colordark:bg-primary-color w-full h-full flex flex-col justify-center gap-3" 
       onSubmit={handleSubmit(onSubmit)}>
+   
+
         {/*TITULO */}
         <label htmlFor="titulo" className="font-texto dark:text-primary-color font-bold">
           Titulo
@@ -107,12 +116,11 @@ export function CreateNews() {
         </div>
 
         {/*BTN CREAR*/}
-        <button type="submit" className="dark:text-primary-color text-second-color">CREAR</button>
+        <button type="submit" className="dark:text-primary-color text-second-color" >CREAR</button>
       </form>
     </section>
   );
 }
-
 
 CreateNews.propTypes = {
   News: PropTypes.any

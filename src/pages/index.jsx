@@ -51,7 +51,7 @@ export function Index() {
                             <div className="w-full h-[10%] min-h-6 flex flex-col-reverse">
                                 <div className="flex flex-row-reverse">
                                     <Link
-                                        to={`/news/${dato.title}`}
+                                        to={`/news/${dato.id}`}
                                         className="font-texto font-semibold px-2 transition-all bg-primary-color text-second-color dark:text-primary-color dark:bg-second-color rounded-sm">
                                         ver mas
                                     </Link>
