@@ -2,14 +2,14 @@ import { useParams } from "react-router-dom";
 import { useNewContext } from "../providers/NewProviter";
 
 export function ViewNews() {
-  const { title } = useParams();
+  const { id } = useParams();
   const datos = useNewContext();
 
-  const newsInfo = datos.find((info) => {
-    if (info.title === title) {
-      return info;
-    }
-  });
+   const newsInfo = datos.find((info) => {
+    if (info.id == id) {
+       return info;
+     }
+   });
 
   console.log(newsInfo);
 

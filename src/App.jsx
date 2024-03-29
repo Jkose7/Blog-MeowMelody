@@ -29,7 +29,7 @@ function App() {
               element={<CreateNews></CreateNews>}
             />
             <Route
-              path="/news/:title"
+              path="/news/:id"
               element={<ViewNews></ViewNews>}
             />
             <Route
