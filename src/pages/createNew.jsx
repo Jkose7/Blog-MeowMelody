@@ -39,7 +39,7 @@ export function CreateNews() {
               message: "El titulo debe tener mas caracteres",
             },
             maxLength: {
-              value: 60,
+              value: 100,
               message: "El titulo debe tener menos caracteres",
             },
           })}
@@ -66,7 +66,7 @@ export function CreateNews() {
               message: "Tu contenido debe ser más extenso",
             },
             maxLength: {
-              value: 1000,
+              value: 2000,
               message: "Tu contenido debe ser menos extenso",
             },
           })}
