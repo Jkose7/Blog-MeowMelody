@@ -75,7 +75,7 @@ export function CreateNews() {
               message: "Tu contenido debe ser más extenso",
             },
             maxLength: {
-              value: 2000,
+              value: 3500,
               message: "Tu contenido debe ser menos extenso",
             },
           })}
