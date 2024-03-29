@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useNewContext } from "../providers/NewProviter"
 import { RenderContent} from "./renderContent"
+import { textContent } from "../hooks/TextContent"
 
 export function NewsContent() {
     const datos = useNewContext()
@@ -10,7 +11,7 @@ export function NewsContent() {
             {
                 datos && datos.length !== 0 &&
                 datos?.slice(1).map((dato) => (
-                    <article key={dato.title} className="bg-second-color dark:bg-primary-color rounded-sm h-full min-h-32 w-full flex flex-col items-center justify-center text-primary-color dark:text-second-color">
+                    <article key={dato.title} className="bg-second-color dark:bg-primary-color rounded-sm h-full max-h-96 w-full flex flex-col items-center justify-center text-primary-color dark:text-second-color">
 
                         <div className={`w-full ${dato.image !== null || dato.additionalContent !== null ? 'h-2/6' : 'h-0'} flex mb-2`}>
                             {
@@ -33,7 +34,7 @@ export function NewsContent() {
                                 <h1 className="overflow-hidden truncate capitalize">{dato.title}</h1>
                             </div>
                             <div className="h-full w-full overflow-hidden text-md text-wrap">
-                                <p className="text-balance break-words">{dato.content}</p>
+                                <p className="text-balance break-words">{textContent(dato.content)}</p>
                             </div>
                         </div>
 

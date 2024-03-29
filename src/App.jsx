@@ -10,6 +10,7 @@ import { ThemeProviter } from "./providers/ThemeProviter.jsx";
 import { NewProviter } from "./providers/NewProviter.jsx";
 
 import { ViewNews } from "./pages/viewNews.jsx";
+import { NotFound } from "./pages/NotFound.jsx";
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
               path="/news/:title"
               element={<ViewNews></ViewNews>}
             />
+            <Route
+              path="*"
+              element={<NotFound></NotFound>}
+            >
+            </Route>
           </Routes>
 
           <Footer />

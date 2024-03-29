@@ -17,7 +17,7 @@ export function CreateNews() {
   } = useForm();
 
   return (
-    <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[90vh]">
+    <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh]">
       <form 
       id="myform"
       action="" 
