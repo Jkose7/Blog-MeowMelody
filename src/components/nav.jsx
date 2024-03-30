@@ -11,7 +11,7 @@ export function Nav() {
     const toggleTheme = useChangeThemeContext()
 
     return (
-        <nav className="bg-transparent flex justify-between font-titulos font-bold items-center text-black dark:text-primary-color h-14">
+        <nav className="bg-transparent flex justify-between font-titulos font-bold items-center text-black dark:text-primary-color h-14 ">
             <Link className="text-3xl z-10" to="/">
                 MeowMelody
             </Link>

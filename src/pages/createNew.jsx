@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import PropTypes from 'prop-types'
 
 import { useCreateNewContext } from "../providers/NewProviter";
-
+import { ModalNews } from "../components/modalNews";
+import { useNewContext } from "../providers/NewProviter";
 
 
 //import { useCreateNewContext } from "../providers/NewProviter"
@@ -11,20 +13,32 @@ export function CreateNews() {
 
   const {onSubmit, handleContenidoA, handleImage} = useCreateNewContext()
   
+  const datos = useNewContext()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  //id de la noticia
 
-  
-  
+  const [modal, setModal] = useState(false) 
 
+  const showModal = () => {
+    if (Object.keys(errors).length == 0){
+      setModal(true)
+      if (modal) {
+        setModal(false)
+      }
+    }
+  } 
+
+
+  console.log(errors)
 
   return (
     <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh] dark:text-primary-color">
+      {modal && Object.keys(errors).length == 0 && <ModalNews cerrar={showModal} id={datos.id}></ModalNews>}
       <form 
       id="myform"
       action="" 
@@ -75,7 +89,7 @@ export function CreateNews() {
               message: "Tu contenido debe ser más extenso",
             },
             maxLength: {
-              value: 2000,
+              value: 3500,
               message: "Tu contenido debe ser menos extenso",
             },
           })}
@@ -116,7 +130,7 @@ export function CreateNews() {
         </div>
 
         {/*BTN CREAR*/}
-        <button type="submit" className="dark:text-primary-color text-second-color" >CREAR</button>
+        <button type="submit" className="dark:text-primary-color text-second-color" onClick={showModal}>CREAR</button>
       </form>
     </section>
   );
