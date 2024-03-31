@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNewContext } from "../providers/NewProviter";
 import { textContent } from "../hooks/TextContent";
 import { RenderContent } from "../components/renderContent";
@@ -10,14 +10,14 @@ import { useCreateNewContext } from "../providers/NewProviter";
 export function ViewNews() {
   const { id } = useParams();
   const datos = useNewContext();
-  const {deleteNews} = useCreateNewContext()
-
+  
   const newsInfo = datos.find((info) => {
     if (info.id == id) {
       return info;
     }
   });
-
+  
+  const {deleteNews} = useCreateNewContext()
   console.log(deleteNews)
 
   return (
@@ -32,11 +32,11 @@ export function ViewNews() {
         transition-all duration-100 w-full">
           Editar
         </button>
-        <button className="font-text-alt border-2 border-transparent bg-second-color text-white p-1 rounded-sm hover:border-second-color hover:bg-transparent hover:text-second-color dark:border-transparent dark:text-second-color dark:bg-primary-color 
+        <Link to="/" className="font-text-alt border-2 border-transparent text-center bg-second-color text-white p-1 rounded-sm hover:border-second-color hover:bg-transparent hover:text-second-color dark:border-transparent dark:text-second-color dark:bg-primary-color 
         dark:hover:bg-transparent dark:hover:text-primary-color dark:hover:border-primary-color dark:hover:border-2
-        transition-all duration-100 w-full" >
+        transition-all duration-100 w-full" onClick={() => deleteNews(newsInfo.id)}>
           Eliminar
-        </button>
+        </Link>
       </div>
 
       <div className="w-full flex font-titulos gap-2 h-full dark:text-primary-color text-lg font-medium">

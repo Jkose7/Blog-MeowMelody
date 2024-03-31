@@ -58,9 +58,10 @@ export const NewProviter = ({ children }) => {
   console.log(datos)
 
   const deleteNews = (id) =>{
-    
+    console.log(id)
     const filterDatos = datos.filter((datu) => datu.id !== id )
-    setDatos([...datos, filterDatos]);
+    console.log(filterDatos)
+    setDatos(filterDatos);
 
   }
 
