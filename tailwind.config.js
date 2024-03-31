@@ -15,7 +15,8 @@ export default {
         'titulos' : ['Playfair Display','Arial', 'sans-serif'],
         'subtitle' : ['Poppins','Arial', 'sans-serif'],
         'texto' : ['Raleway','Arial', 'sans-serif'],
-        'text-alt' : ['DM Sans','Arial', 'sans-serif']
+        'text-alt' : ['DM Sans','Arial', 'sans-serif'],
+        'texto2' : ['Oswald','Arial', 'sans-serif']
       }
     },
   },
