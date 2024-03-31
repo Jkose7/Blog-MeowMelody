@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types'
+
+
 export const RenderContent = ({ content, typeContent }) => {
     switch (typeContent) {
         case 'audio/mpeg':
@@ -11,4 +14,10 @@ export const RenderContent = ({ content, typeContent }) => {
         default:
             return null; // Manejo de tipo de contenido desconocido
     }
+    
 }
+
+RenderContent.propTypes = {
+    content: PropTypes.any,
+    typeContent : PropTypes.any
+  }

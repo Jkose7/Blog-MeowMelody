@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import { useNewContext } from "../providers/NewProviter"
-import { RenderContent} from "./renderContent"
 import { textContent } from "../hooks/TextContent"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMusic, faFilePdf } from "@fortawesome/free-solid-svg-icons"
 
 export function NewsContent() {
     const datos = useNewContext()
@@ -23,10 +24,26 @@ export function NewsContent() {
                                 />
                             }
                             {
-                                <RenderContent 
-                                    content={dato.additionalContent}
-                                    typeContent={dato.typeContent}
-                                />
+                                dato.typeContent === "audio/mpeg" && (
+                                    <div className="w-full h-full flex items-center justify-center ">
+                                         <FontAwesomeIcon 
+                                         icon={faMusic} 
+                                         style={{color: "#fff"}}
+                                         size="xl">
+                                         </FontAwesomeIcon>
+                                    </div>
+                                )
+                            }
+                            {
+                                dato.typeContent === "application/pdf" && (
+                                    <div className="w-full h-full flex items-center justify-center ">
+                                         <FontAwesomeIcon 
+                                         icon={faFilePdf} 
+                                         style={{color: "#fff"}}
+                                         size="xl">
+                                         </FontAwesomeIcon>
+                                    </div>
+                                )
                             }
                         </div>
                         <div className={`${dato.image !== null || dato.additionalContent !== null ? "h-3/6" : "h-5/6 pt-3"} w-full flex flex-col px-3`}>
@@ -38,7 +55,7 @@ export function NewsContent() {
                             </div>
                         </div>
 
-                        <div className="h-1/6 w-full flex flex-row-reverse px-3 items-center">
+                        <div className="h-1/6 w-full flex flex-row-reverse  px-3 items-center">
                             <Link
                                 to={`/news/${dato.id}`}
                                 className="font-texto text-xs font-semibold px-2 transition-all bg-primary-color text-second-color rounded-sm dark:text-primary-color dark:bg-second-color">

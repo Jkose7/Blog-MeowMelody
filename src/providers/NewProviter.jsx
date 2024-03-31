@@ -57,9 +57,16 @@ export const NewProviter = ({ children }) => {
 
   console.log(datos)
 
+  const deleteNews = (id) =>{
+    
+    const filterDatos = datos.filter((datu) => datu.id !== id )
+    setDatos([...datos, filterDatos]);
+
+  }
+
   return (
     <newContext.Provider value={datos}> {/*datos a cambiar */}
-      <createNewContext.Provider value={{onSubmit, handleContenidoA, handleImage}}> {/*funcion q cambia dato */}
+      <createNewContext.Provider value={{onSubmit, handleContenidoA, handleImage, deleteNews}}> {/*funcion q cambia dato */}
         {children}
       </createNewContext.Provider>
     </newContext.Provider>

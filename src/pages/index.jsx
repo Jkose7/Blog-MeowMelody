@@ -11,12 +11,12 @@ export function Index() {
     const datos = useNewContext()
 
     return (
-        <div className="flex flex-col h-full justify-center w-full gap-2">
+        <div className="flex flex-col h-full justify-center w-full gap-2 my-6">
 
             {/* Contenedor grande */}
             {datos.length >= 1 &&
                 datos?.slice(0, 1).map((dato) => (
-                    <article key={dato.title} className="bg-second-color mt-auto rounded-sm dark:bg-primary-color w-full min-h-96 flex text-primary-color dark:text-second-color">
+                    <article key={dato.title} className=" bg-second-color  rounded-sm dark:bg-primary-color w-full min-h-96 flex text-primary-color dark:text-second-color">
 
                         <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-full' : 'w-0'} flex flex-col h-full`}>
                             {
