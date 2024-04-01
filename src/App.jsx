@@ -11,6 +11,7 @@ import { NewProviter } from "./providers/NewProviter.jsx";
 
 import { ViewNews } from "./pages/viewNews.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
+import { EditNews } from "./pages/editNews.jsx";
 
 function App() {
   return (
@@ -32,6 +33,11 @@ function App() {
               path="/news/:id"
               element={<ViewNews></ViewNews>}
             />
+            <Route
+              path="/editNews/:id"
+              element={<EditNews></EditNews>}
+            >
+            </Route>
             <Route
               path="*"
               element={<NotFound></NotFound>}
