@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 
 
-export function ModalNews({cerrar, id}) {
+export function ModalNews({cerrar}) {
   return (
     <div className="modal text-white dark:text-black ">
       <div className="modal-info dark:bg-primary-color">
@@ -25,5 +25,4 @@ export function ModalNews({cerrar, id}) {
 
 ModalNews.propTypes = {
     cerrar: PropTypes.any,
-    id : PropTypes.any
   }

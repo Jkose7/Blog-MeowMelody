@@ -15,17 +15,18 @@ export const useChangeThemeContext = () => {
 // eslint-disable-next-line react/prop-types
 export function ThemeProviter({ children }) {
   const [theme, setTheme] = useState(() => {
-    if (window.matchMedia("(prefers-colors-sheme: dark)").matches) {
-      return "dark";
-    }
-
-    return "light";
+    const preferColor = localStorage.getItem('theme')
+    return preferColor
   });
 
   useEffect(() => {
-    theme === "dark"
-      ? document.querySelector("html").classList.add("dark")
-      : document.querySelector("html").classList.remove("dark");
+    if (theme === "dark"){
+      document.querySelector("html").classList.add("dark")
+      localStorage.setItem('theme',"dark")
+    }else{
+      document.querySelector("html").classList.remove("dark");
+      localStorage.setItem('theme', "light")
+    }
   }, [theme]);
 
   const toggleTheme = () => {

@@ -98,7 +98,7 @@ export function CreateNews() {
         {errors.contenido && <span className="text-sm">{errors.contenido.message}</span>}
 
 
-        <div className="flex w-full justify-between">
+        <div className="flex w-full justify-between minicel:flex-col sm:flex-row" >
           <div className="flex flex-col w-full">
             {/* IMAGEN*/}
             <label htmlFor="fileupload" className="block dark:text-primary-color font-texto font-bold">
