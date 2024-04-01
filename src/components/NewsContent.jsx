@@ -26,7 +26,7 @@ export function NewsContent() {
                                 />
                             }
                             {
-                                dato.typeContent === "audio/mpeg" || dato.typeContent === "audio/ogg" && (
+                                dato.typeContent === "audio/mpeg"  && (
                                     <div className="w-full h-full flex items-center justify-center ">
                                          <FontAwesomeIcon 
                                          icon={faMusic} 
