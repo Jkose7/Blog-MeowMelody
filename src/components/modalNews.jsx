@@ -1,4 +1,4 @@
-import "../modalStyles.css";
+import "../modalNewsStyles.css";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types'
 

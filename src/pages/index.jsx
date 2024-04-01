@@ -3,7 +3,9 @@ import { Link } from "react-router-dom"
 import { NewsContent } from "../components/NewsContent"
 import { NoNewContent } from "../components/NoNewContent"
 import { useNewContext } from "../providers/NewProviter"
-import { RenderContent } from "../components/renderContent"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMusic, faFilePdf } from "@fortawesome/free-solid-svg-icons"
 
 import { textContent } from "../hooks/TextContent"
 
@@ -28,12 +30,26 @@ export function Index() {
                                 />
                             }
                             {
-                                <div className={`${dato.image !== null ? 'h-1/2' : 'h-full'}`}>
-                                    <RenderContent
-                                        content={dato.additionalContent}
-                                        typeContent={dato.typeContent}
-                                    />
-                                </div>
+                                dato.typeContent === "audio/mpeg" && (
+                                    <div className="w-full h-full flex items-center justify-center ">
+                                         <FontAwesomeIcon 
+                                         icon={faMusic} 
+                                         style={{color: "#fff"}}
+                                         size="xl">
+                                         </FontAwesomeIcon>
+                                    </div>
+                                )
+                            }
+                            {
+                                dato.typeContent === "application/pdf" && (
+                                    <div className="w-full h-full flex items-center justify-center ">
+                                         <FontAwesomeIcon 
+                                         icon={faFilePdf} 
+                                         style={{color: "#fff"}}
+                                         size="xl">
+                                         </FontAwesomeIcon>
+                                    </div>
+                                )
                             }
                         </div>
 

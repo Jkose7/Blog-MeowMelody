@@ -93,7 +93,7 @@ export function CreateNews() {
               message: "Tu contenido debe ser menos extenso",
             },
           })}
-          className="w-full font-titulos dark:text-primary-color text-second-color pb-2 mr-2 border-b-2 border-r-2 border-second-color dark:border-white bg-transparent focus:outline-none"
+          className="w-full font-titulos dark:text-primary-color text-second-color pb-2 pr-3 mr-2 border-b-2 border-r-2 border-second-color dark:border-white bg-transparent focus:outline-none"
         ></textarea>
         {errors.contenido && <span className="text-sm">{errors.contenido.message}</span>}
 

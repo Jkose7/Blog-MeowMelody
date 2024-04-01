@@ -17,6 +17,9 @@ export default {
         'texto' : ['Raleway','Arial', 'sans-serif'],
         'text-alt' : ['DM Sans','Arial', 'sans-serif'],
         'texto2' : ['Oswald','Arial', 'sans-serif']
+      },
+      screens: {
+        'minicel' : ['300px']
       }
     },
   },
