@@ -6,9 +6,6 @@ import { useCreateNewContext } from "../providers/NewProviter";
 import { ModalNews } from "../components/modalNews";
 import { useNewContext } from "../providers/NewProviter";
 
-
-//import { useCreateNewContext } from "../providers/NewProviter"
-
 export function CreateNews() {
 
   const {onSubmit, handleContenidoA, handleImage} = useCreateNewContext()

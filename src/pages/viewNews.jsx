@@ -42,22 +42,23 @@ export function ViewNews() {
           />
         </Link>
         <div className="w-full flex flex-col justify-center">
-          <h1 className="font-titulos text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
+          <h1 className="font-titulos capitalize text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
             {newsInfo.title}
           </h1>
-          <p className="text-end font-text-alt dark:text-primary-color">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
         </div>
+        <p className="text-end font-text-alt dark:text-primary-color">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
       </div>
 
       <div className="flex gap-3 w-1/2">
-        <button
+        <Link
           className="font-text-alt border-2 border-transparent bg-second-color text-white p-1 rounded-sm hover:border-second-color hover:bg-transparent 
-        hover:text-second-color dark:border-transparent dark:text-second-color dark:bg-primary-color 
+        hover:text-second-color text-center dark:border-transparent dark:text-second-color dark:bg-primary-color 
         dark:hover:bg-transparent dark:hover:text-primary-color dark:hover:border-primary-color dark:hover:border-2
         transition-all duration-100 w-full"
+          to={`/editNews/${id}`}
         >
           Editar
-        </button>
+        </Link>
         <button
           to="/"
           className="font-text-alt border-2 border-transparent text-center bg-second-color text-white p-1 rounded-sm hover:border-second-color hover:bg-transparent hover:text-second-color dark:border-transparent dark:text-second-color dark:bg-primary-color 
@@ -106,10 +107,10 @@ export function ViewNews() {
                 href={newsInfo.additionalContent}
                 download
                 className={`${newsInfo.typeContent === "audio/mpeg" ||
-                newsInfo.typeContent === "application/pdf"
-                ? "h-[8%]"
-                : "h-1/2"
-                } font-texto font-bold text-md absolute bottom-0 flex gap-2 text-second-color p-3 dark:text-primary-color`}
+                  newsInfo.typeContent === "application/pdf"
+                  ? "h-[8%]"
+                  : "h-1/2"
+                  } font-texto font-bold text-md absolute bottom-0 flex gap-2 text-second-color p-3 dark:text-primary-color`}
               >
                 <FontAwesomeIcon
                   icon={faDownload}
@@ -125,7 +126,7 @@ export function ViewNews() {
 
         <div
           className={`${newsInfo.image !== null || newsInfo.additionalContent !== null ? "w-1/2" : "w-full"
-            } flex-1  h-full w-full justify-center flex items-center overflow-hidden max-h-[500px] min-h-[500px] overflow-y-scroll pr-5`}
+            } flex-1  h-full w-full justify-center flex overflow-hidden max-h-[500px] min-h-[500px] overflow-y-scroll pr-5`}
         >
           <p className="text-balance text-justify break-words max-w-full ">
             {textContent(newsInfo.content, false, true)}
