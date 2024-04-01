@@ -48,7 +48,7 @@ export function NewsContent() {
                                 )
                             }
                             {
-                                dato.typeContent === "image.png" || dato.typeContent === "image/png" && (
+                                dato.typeContent === "image/jpge" || dato.typeContent === "image/png" && (
                                     <div className="w-full h-full flex items-center justify-center ">
                                          <FontAwesomeIcon 
                                          icon={faImage} 

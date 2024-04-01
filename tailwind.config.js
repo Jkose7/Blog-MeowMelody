@@ -19,7 +19,8 @@ export default {
         'texto2' : ['Oswald','Arial', 'sans-serif']
       },
       screens: {
-        'minicel' : ['300px']
+        'minicel' : '250px',
+        'celular' : '300px'
       }
     },
   },

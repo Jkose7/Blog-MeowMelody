@@ -28,23 +28,30 @@ export function ViewNews() {
     setModalDelete(!modalDelete)
   }
 
+  const [id,setId] = useState(newsInfo.id)
+
+  const findId = datos.find((ide) =>{
+    
+  })
+
   console.log(newsInfo.fecha)
 
   return (
-    <div className="flex flex-col gap-3 my-7 max-h-[710px] min-h-[710px] overflow-hidden ">
+    <div className="flex flex-col gap-3 my-7 minicel:max-h-[500px] sm:max-h-[710px] minicel:min-h-[400px ] sm:min-h-[710px] overflow-hidden ">
       {modalDelete && <ModalDeleteNews cerrar={showModalDelete}></ModalDeleteNews>}
       <div className="flex items-center w-full">
         <Link to="/">
           <FontAwesomeIcon
             icon={faArrowLeft}
-            size="xl"
+            size="md"
             style={{ color: iconColor }}
           />
         </Link>
         <div className="w-full flex flex-col justify-center">
-          <h1 className="font-titulos capitalize text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
+          <h1 className="font-titulos minicel:text-3xl sm:text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
             {newsInfo.title}
           </h1>
+          <p className="minicel:text-sm sm:text-md text-end font-text-alt dark:text-primary-color">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
         </div>
         <p className="text-end font-text-alt dark:text-primary-color">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
       </div>
@@ -70,9 +77,9 @@ export function ViewNews() {
         </button>
       </div>
 
-      <div className="w-full flex font-titulos gap-2 h-full dark:text-primary-color text-lg font-medium " >
+      <div className="w-full flex font-titulos gap-2 h-full dark:text-primary-color text-lg font-medium minicel:flex-col sm:flex-row" >
         <div
-          className={`${newsInfo.image || newsInfo.additionalContent ? 'w-1/2' : 'hidden'} min-h-[500px] border-2  border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
+          className={`${newsInfo.image || newsInfo.additionalContent ? 'minicel:w-full sm:w-1/2' : 'hidden'} minicel:min-h-[150px] sm:min-h-[500px] border-2   border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
           dark:border-white`}
         >
           {newsInfo.image !== null && (
@@ -81,7 +88,7 @@ export function ViewNews() {
                 newsInfo.typeContent === "application/pdf"
                 ? "h-[80%]"
                 : "h-1/2"
-                } `}
+                }w-full `}
             >
               <img
                 src={newsInfo.image}
@@ -95,9 +102,9 @@ export function ViewNews() {
             <div
               className={`${newsInfo.typeContent === "audio/mpeg" ||
                 newsInfo.typeContent === "application/pdf"
-                ? "h-[15%]"
+                ? "h-[12%]"
                 : "h-1/2"
-                } `}
+                }w-full `}
             >
               <RenderContent
                 content={newsInfo.additionalContent}

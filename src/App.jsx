@@ -17,7 +17,7 @@ function App() {
   return (
     <NewProviter>
       <ThemeProviter>
-        <main className="bg-primary-color dark:bg-second-color -z-10 w-full min-h-screen flex flex-col justify-center py-5 md:px-16 lg:px-28 xl:px-48 2xl:px-80 gap-2">
+        <main className="bg-primary-color dark:bg-second-color -z-10 w-full min-h-screen flex flex-col justify-center py-5 minicel:px-10 md:px-16 lg:px-28 xl:px-48 2xl:px-80 gap-2">
           <Nav />
 
           <Routes>
