@@ -31,7 +31,7 @@ export function ViewNews() {
   console.log(newsInfo.fecha)
 
   return (
-    <div className="flex flex-col gap-3 my-7 max-h-[700px] min-h-[700px] overflow-hidden ">
+    <div className="flex flex-col gap-3 my-7 max-h-[710px] min-h-[710px] overflow-hidden ">
       {modalDelete && <ModalDeleteNews cerrar={showModalDelete}></ModalDeleteNews>}
       <div className="flex items-center w-full">
         <Link to="/">
