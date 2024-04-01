@@ -7,34 +7,26 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { ModalDeleteNews } from "../components/modalDeleteNews";
-import { useThemeContext } from "../providers/ThemeProviter";
+
+import { useFindNews } from "../hooks/useFindNews";
+import { usePrevious } from "../hooks/usePreviousContent";
+import { useNext } from "../hooks/useNextContent";
+import { iconChangeTheme } from "../hooks/iconChangeTheme";
+
+
 
 export function ViewNews() {
-  const { id } = useParams();
-  const datos = useNewContext();
-  const theme = useThemeContext();
-
-  const iconColor = theme === 'dark' ? '#FFFFEC' : '#1a1a1a'
-
-  const newsInfo = datos.find((info) => {
-    if (info.id == id) {
-      return info;
-    }
-  });
-
+  const { id, title, content, image, additionalContent, typeContent, fecha } = useFindNews()
+  
+  const nextId = useNext()
+  const previousId = usePrevious()
+  const iconColor = iconChangeTheme()
+  
   const [modalDelete, setModalDelete] = useState(false)
 
   const showModalDelete = () => {
     setModalDelete(!modalDelete)
   }
-
-  const [id,setId] = useState(newsInfo.id)
-
-  const findId = datos.find((ide) =>{
-    
-  })
-
-  console.log(newsInfo.fecha)
 
   return (
     <div className="flex flex-col gap-3 my-7 minicel:max-h-[500px] sm:max-h-[710px] minicel:min-h-[400px ] sm:min-h-[710px] overflow-hidden ">
@@ -43,17 +35,16 @@ export function ViewNews() {
         <Link to="/">
           <FontAwesomeIcon
             icon={faArrowLeft}
-            size="md"
+            size="sm"
             style={{ color: iconColor }}
           />
         </Link>
         <div className="w-full flex flex-col justify-center">
           <h1 className="font-titulos minicel:text-3xl sm:text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
-            {newsInfo.title}
+            {title}
           </h1>
-          <p className="minicel:text-sm sm:text-md text-end font-text-alt dark:text-primary-color">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
         </div>
-        <p className="text-end font-text-alt dark:text-primary-color">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
+        <p className="text-end font-text-alt dark:text-primary-color">{new Date(fecha).toLocaleDateString()}</p>
       </div>
 
       <div className="flex gap-3 w-1/2">
@@ -79,42 +70,42 @@ export function ViewNews() {
 
       <div className="w-full flex font-titulos gap-2 h-full dark:text-primary-color text-lg font-medium minicel:flex-col sm:flex-row" >
         <div
-          className={`${newsInfo.image || newsInfo.additionalContent ? 'minicel:w-full sm:w-1/2' : 'hidden'} minicel:min-h-[150px] sm:min-h-[500px] border-2   border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
+          className={`${image || additionalContent ? 'minicel:w-full sm:w-1/2' : 'hidden'} minicel:min-h-[150px] sm:min-h-[500px] border-2   border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
           dark:border-white`}
         >
-          {newsInfo.image !== null && (
+          {image !== null && (
             <div
-              className={`${newsInfo.typeContent === "audio/mpeg" ||
-                newsInfo.typeContent === "application/pdf"
+              className={`${typeContent === "audio/mpeg" ||
+                typeContent === "application/pdf"
                 ? "h-[80%]"
                 : "h-1/2"
                 }w-full `}
             >
               <img
-                src={newsInfo.image}
+                src={image}
                 className="object-cover aspect-auto w-full h-full"
                 alt=""
               />
             </div>
           )}
 
-          {newsInfo.additionalContent !== null && (
+          {additionalContent !== null && (
             <div
-              className={`${newsInfo.typeContent === "audio/mpeg" ||
-                newsInfo.typeContent === "application/pdf"
+              className={`${typeContent === "audio/mpeg" ||
+                typeContent === "application/pdf"
                 ? "h-[12%]"
                 : "h-1/2"
                 }w-full `}
             >
               <RenderContent
-                content={newsInfo.additionalContent}
-                typeContent={newsInfo.typeContent}
+                content={additionalContent}
+                typeContent={typeContent}
               ></RenderContent>
               <a
-                href={newsInfo.additionalContent}
+                href={additionalContent}
                 download
-                className={`${newsInfo.typeContent === "audio/mpeg" ||
-                  newsInfo.typeContent === "application/pdf"
+                className={`${typeContent === "audio/mpeg" ||
+                  typeContent === "application/pdf"
                   ? "h-[8%]"
                   : "h-1/2"
                   } font-texto font-bold text-md absolute bottom-0 flex gap-2 text-second-color p-3 dark:text-primary-color`}
@@ -132,26 +123,34 @@ export function ViewNews() {
         </div>
 
         <div
-          className={`${newsInfo.image !== null || newsInfo.additionalContent !== null ? "w-1/2" : "w-full"
+          className={`${image !== null || additionalContent !== null ? "w-1/2" : "w-full"
             } flex-1  h-full w-full justify-center flex overflow-hidden max-h-[500px] min-h-[500px] overflow-y-scroll pr-5`}
         >
           <p className="text-balance text-justify break-words max-w-full ">
-            {textContent(newsInfo.content, false, true)}
+            {textContent(content, false, true)}
           </p>
         </div>
       </div>
 
       <div className="flex justify-between">
-        <button className="p-2 bg-second-color border-transparent border-2 text-primary-color text-center rounded-sm  hover:border-2
+        <Link
+          to={`/news/${previousId}`}
+          className="p-2 bg-second-color border-transparent border-2 text-primary-color text-center rounded-sm  hover:border-2
         hover:border-second-color hover:bg-transparent hover:text-second-color
         dark:boder-2 dark:border-transparent dark:bg-primary-color dark:text-second-color dark:hover:border-primary-color
         dark:hover:bg-transparent dark:hover:text-primary-color"
-        >Anterior</button>
-        <button className="p-2 bg-second-color border-transparent border-2 text-primary-color text-center rounded-sm  hover:border-2
+        >
+          Anterior
+        </Link>
+        <Link
+          to={`/news/${nextId}`}
+          className="p-2 bg-second-color border-transparent border-2 text-primary-color text-center rounded-sm  hover:border-2
         hover:border-second-color hover:bg-transparent hover:text-second-color
         dark:boder-2 dark:border-transparent dark:bg-primary-color dark:text-second-color dark:hover:border-primary-color
         dark:hover:bg-transparent dark:hover:text-primary-color"
-        >Siguiente</button>
+        >
+          Siguiente
+        </Link>
       </div>
     </div>
   );

@@ -1,16 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import PropTypes from 'prop-types'
 
 import { useCreateNewContext } from "../providers/NewProviter";
 import { ModalNews } from "../components/modalNews";
-import { useNewContext } from "../providers/NewProviter";
+import { useModal } from "../hooks/useModal";
 
 export function CreateNews() {
-
   const {onSubmit, handleContenidoA, handleImage} = useCreateNewContext()
-  
-  const datos = useNewContext()
+  const {modal, showModal} = useModal()
 
   const {
     register,
@@ -19,23 +16,10 @@ export function CreateNews() {
   } = useForm();
 
 
-  const [modal, setModal] = useState(false) 
-
-  const showModal = () => {
-    if (Object.keys(errors).length == 0){
-      setModal(true)
-      if (modal) {
-        setModal(false)
-      }
-    }
-  } 
-
-
-  console.log(errors)
-
+  
   return (
     <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh] dark:text-primary-color">
-      {modal && Object.keys(errors).length == 0 && <ModalNews cerrar={showModal} id={datos.id}></ModalNews>}
+      {modal && Object.keys(errors).length == 0 && <ModalNews cerrar={showModal}></ModalNews>}
       <form 
       id="myform"
       action="" 

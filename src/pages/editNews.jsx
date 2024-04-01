@@ -1,32 +1,14 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { useCreateNewContext, useNewContext } from "../providers/NewProviter";
 import { useImageURL } from "../hooks/useImageURL";
 import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
-
-
-const useFindNews = () => {
-    const { id } = useParams()
-    const datos = useNewContext()
-
-    const foundedNews = datos.find((info) => {
-        if (info.id == id) {
-            return info;
-        }
-    });
-
-    return { foundedNews }
-}
-
-
+import { useFindNews } from "../hooks/useFindNews";
 
 export function EditNews() {
     const { foundedNews } = useFindNews()
     const { imageURL, handleImage } = useImageURL()
-    const { contenidoAUrl, handleContenidoA} = useContenidoAdicional()
+    const { contenidoAUrl, handleContenidoA } = useContenidoAdicional()
 
     const editNews = data => {
         foundedNews.title = data.titulo
@@ -40,8 +22,6 @@ export function EditNews() {
         handleSubmit,
         formState: { errors },
     } = useForm();
-
-    console.log(errors)
 
     return (
         <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh] dark:text-primary-color">
@@ -139,6 +119,8 @@ export function EditNews() {
 
                 {/*BTN CREAR*/}
                 <button type="submit">EDITAR</button>
+
+
 
             </form>
         </section>
