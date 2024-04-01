@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useNewContext } from "../providers/NewProviter"
 import { textContent } from "../hooks/TextContent"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMusic, faFilePdf } from "@fortawesome/free-solid-svg-icons"
+import { faMusic, faFilePdf, faImage } from "@fortawesome/free-solid-svg-icons"
 
 export function NewsContent() {
     const datos = useNewContext()
@@ -39,6 +39,17 @@ export function NewsContent() {
                                     <div className="w-full h-full flex items-center justify-center ">
                                          <FontAwesomeIcon 
                                          icon={faFilePdf} 
+                                         style={{color: "#fff"}}
+                                         size="xl">
+                                         </FontAwesomeIcon>
+                                    </div>
+                                )
+                            }
+                            {
+                                dato.typeContent === "image.png" && (
+                                    <div className="w-full h-full flex items-center justify-center ">
+                                         <FontAwesomeIcon 
+                                         icon={faImage} 
                                          style={{color: "#fff"}}
                                          size="xl">
                                          </FontAwesomeIcon>
