@@ -45,7 +45,7 @@ export function ViewNews() {
           <h1 className="font-titulos text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
             {newsInfo.title}
           </h1>
-          <p className="text-end font-text-alt">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
+          <p className="text-end font-text-alt dark:text-primary-color">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
         </div>
       </div>
 
@@ -105,12 +105,16 @@ export function ViewNews() {
               <a
                 href={newsInfo.additionalContent}
                 download
-                className="font-texto font-bold text-md absolute bottom-0 flex gap-2 text-primary-color p-3"
+                className={`${newsInfo.typeContent === "audio/mpeg" ||
+                newsInfo.typeContent === "application/pdf"
+                ? "h-[8%]"
+                : "h-1/2"
+                } font-texto font-bold text-md absolute bottom-0 flex gap-2 text-second-color p-3 dark:text-primary-color`}
               >
                 <FontAwesomeIcon
                   icon={faDownload}
                   size="xl"
-                  style={{ color: "#fff" }}
+                  style={{ color: "#1a1a1a" }}
                 />
                 Descargar
               </a>
