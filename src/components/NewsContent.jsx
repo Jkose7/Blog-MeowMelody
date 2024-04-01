@@ -7,6 +7,8 @@ import { faMusic, faFilePdf, faImage } from "@fortawesome/free-solid-svg-icons"
 export function NewsContent() {
     const datos = useNewContext()
 
+    
+
     return (
         <>
             {
@@ -24,7 +26,7 @@ export function NewsContent() {
                                 />
                             }
                             {
-                                dato.typeContent === "audio/mpeg" && (
+                                dato.typeContent === "audio/mpeg" || dato.typeContent === "audio/ogg" && (
                                     <div className="w-full h-full flex items-center justify-center ">
                                          <FontAwesomeIcon 
                                          icon={faMusic} 
@@ -46,7 +48,7 @@ export function NewsContent() {
                                 )
                             }
                             {
-                                dato.typeContent === "image.png" && (
+                                dato.typeContent === "image.png" || dato.typeContent === "image/png" && (
                                     <div className="w-full h-full flex items-center justify-center ">
                                          <FontAwesomeIcon 
                                          icon={faImage} 

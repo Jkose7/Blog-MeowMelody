@@ -5,7 +5,7 @@ import { NoNewContent } from "../components/NoNewContent"
 import { useNewContext } from "../providers/NewProviter"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMusic, faFilePdf } from "@fortawesome/free-solid-svg-icons"
+import { faMusic, faFilePdf, faImage } from "@fortawesome/free-solid-svg-icons"
 
 import { textContent } from "../hooks/TextContent"
 
@@ -20,7 +20,7 @@ export function Index() {
                 datos?.slice(0, 1).map((dato) => (
                     <article key={dato.title} className=" bg-second-color  rounded-sm dark:bg-primary-color w-full min-h-96 flex text-primary-color dark:text-second-color">
 
-                        <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-full' : 'w-0'} flex flex-col h-full`}>
+                        <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-1/2' : 'w-0'} flex flex-col min-h-96 max-h-96 justify-center items-center`}>
                             {
                                 dato.image !== null &&
                                 <img
@@ -30,30 +30,42 @@ export function Index() {
                                 />
                             }
                             {
-                                dato.typeContent === "audio/mpeg" && (
-                                    <div className="w-full h-full flex items-center justify-center ">
-                                         <FontAwesomeIcon 
-                                         icon={faMusic} 
-                                         style={{color: "#fff"}}
-                                         size="xl">
-                                         </FontAwesomeIcon>
+                                dato.typeContent === "audio/mpeg" || dato.typeContent === "audio/ogg" && (
+                                    <div className="h-full flex items-center">
+                                        <FontAwesomeIcon
+                                            icon={faMusic}
+                                            style={{ color: "#fff" }}
+                                            size="4x"
+                                        >
+                                        </FontAwesomeIcon>
                                     </div>
                                 )
                             }
                             {
                                 dato.typeContent === "application/pdf" && (
                                     <div className="w-full h-full flex items-center justify-center ">
-                                         <FontAwesomeIcon 
-                                         icon={faFilePdf} 
-                                         style={{color: "#fff"}}
-                                         size="xl">
-                                         </FontAwesomeIcon>
+                                        <FontAwesomeIcon
+                                            icon={faFilePdf}
+                                            style={{ color: "#fff" }}
+                                            size="xl">
+                                        </FontAwesomeIcon>
+                                    </div>
+                                )
+                            }
+                            {
+                                dato.typeContent === "image.png" || dato.typeContent === "image/png" && (
+                                    <div className="w-full h-full flex items-center justify-center ">
+                                        <FontAwesomeIcon
+                                            icon={faImage}
+                                            style={{ color: "#fff" }}
+                                            size="xl">
+                                        </FontAwesomeIcon>
                                     </div>
                                 )
                             }
                         </div>
 
-                        <div className="w-full min-h-96 flex flex-col p-4">
+                        <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-1/2' : 'w-full'} min-h-96 max-h-96 flex flex-col p-4`}>
 
                             <div className="w-full h-[90%] flex flex-col gap-4">
                                 <div className="w-full text-3xl font-titulos font-bold flex items-center">

@@ -5,12 +5,16 @@ import { RenderContent } from "../components/renderContent";
 import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { ModalDeleteNews } from "../components/modalDeleteNews";
+import { useThemeContext } from "../providers/ThemeProviter";
 
 export function ViewNews() {
   const { id } = useParams();
   const datos = useNewContext();
+  const theme = useThemeContext();
+
+  const iconColor = theme === 'dark' ? '#FFFFEC' : '#1a1a1a'
 
   const newsInfo = datos.find((info) => {
     if (info.id == id) {
@@ -18,32 +22,33 @@ export function ViewNews() {
     }
   });
 
-  
-
-  const [modalDelete, setModalDelete] = useState(false) 
+  const [modalDelete, setModalDelete] = useState(false)
 
   const showModalDelete = () => {
     setModalDelete(!modalDelete)
-  } 
+  }
 
   console.log(newsInfo.fecha)
 
   return (
-    <div className="flex flex-col gap-3 my-7 max-h-[600px]  min-h-[700px] overflow-hidden ">
+    <div className="flex flex-col gap-3 my-7 max-h-[700px] min-h-[700px] overflow-hidden ">
       {modalDelete && <ModalDeleteNews cerrar={showModalDelete}></ModalDeleteNews>}
-      <div className="flex gap-[30%]">
+      <div className="flex items-center w-full">
         <Link to="/">
-          <FontAwesomeIcon 
-          icon={faArrowLeft}
-          size="xl" />
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            size="xl"
+            style={{ color: iconColor }}
+          />
         </Link>
-        <h1 className="font-titulos  text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
-        {newsInfo.title}
-      </h1>
+        <div className="w-full flex flex-col justify-center">
+          <h1 className="font-titulos text-5xl font-semibold text-balance text-center mb-4 dark:text-primary-color">
+            {newsInfo.title}
+          </h1>
+          <p className="text-end font-text-alt">{new Date(newsInfo.fecha).toLocaleDateString()}</p>
+        </div>
       </div>
-      <div>
-        <p>{newsInfo.fecha.month}</p>
-      </div>
+
       <div className="flex gap-3 w-1/2">
         <button
           className="font-text-alt border-2 border-transparent bg-second-color text-white p-1 rounded-sm hover:border-second-color hover:bg-transparent 
@@ -58,7 +63,7 @@ export function ViewNews() {
           className="font-text-alt border-2 border-transparent text-center bg-second-color text-white p-1 rounded-sm hover:border-second-color hover:bg-transparent hover:text-second-color dark:border-transparent dark:text-second-color dark:bg-primary-color 
         dark:hover:bg-transparent dark:hover:text-primary-color dark:hover:border-primary-color dark:hover:border-2
         transition-all duration-100 w-full"
-          onClick={setModalDelete} 
+          onClick={setModalDelete}
         >
           Eliminar
         </button>
@@ -66,18 +71,16 @@ export function ViewNews() {
 
       <div className="w-full flex font-titulos gap-2 h-full dark:text-primary-color text-lg font-medium " >
         <div
-          className="w-1/2 min-h-[500px] border-2  border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
-          dark:border-white p-3"
+          className={`${newsInfo.image || newsInfo.additionalContent ? 'w-1/2' : 'hidden'} min-h-[500px] border-2  border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
+          dark:border-white`}
         >
           {newsInfo.image !== null && (
             <div
-              className={`${
-                newsInfo.typeContent === "audio/mpeg" ||
-                newsInfo.typeContent === "application/pdf" ||
-                newsInfo.typeContent === "image/png"
-                  ? "h-[80%]"
-                  : "h-1/2"
-              } `}
+              className={`${newsInfo.typeContent === "audio/mpeg" ||
+                newsInfo.typeContent === "application/pdf"
+                ? "h-[80%]"
+                : "h-1/2"
+                } `}
             >
               <img
                 src={newsInfo.image}
@@ -89,41 +92,43 @@ export function ViewNews() {
 
           {newsInfo.additionalContent !== null && (
             <div
-              className={`${
-                newsInfo.typeContent === "audio/mpeg" ||
-                newsInfo.typeContent === "application/pdf" ||
-                newsInfo.typeContent === "image/png"
-                  ? "h-[15%]"
-                  : "h-1/2"
-              } `}
+              className={`${newsInfo.typeContent === "audio/mpeg" ||
+                newsInfo.typeContent === "application/pdf"
+                ? "h-[15%]"
+                : "h-1/2"
+                } `}
             >
               <RenderContent
                 content={newsInfo.additionalContent}
                 typeContent={newsInfo.typeContent}
               ></RenderContent>
+              <a
+                href={newsInfo.additionalContent}
+                download
+                className="font-texto font-bold text-md absolute bottom-0 flex gap-2 text-primary-color p-3"
+              >
+                <FontAwesomeIcon
+                  icon={faDownload}
+                  size="xl"
+                  style={{ color: "#fff" }}
+                />
+                Descargar
+              </a>
             </div>
           )}
 
-          {newsInfo.additionalContent !== null && (
-            <a
-              href={newsInfo.additionalContent}
-              download
-              className="underline font-texto text-sm"
-            >
-              Descarga el contenido adicional
-            </a>
-          )}
         </div>
+
         <div
-          className={`${
-            newsInfo.image !== null || newsInfo.additionalContent !== null ? "w-1/2" : "w-full"
-          } flex-1  h-full w-full justify-center flex items-center overflow-hidden max-h-[600px]  overflow-y-scroll pr-5`}
+          className={`${newsInfo.image !== null || newsInfo.additionalContent !== null ? "w-1/2" : "w-full"
+            } flex-1  h-full w-full justify-center flex items-center overflow-hidden max-h-[500px] min-h-[500px] overflow-y-scroll pr-5`}
         >
           <p className="text-balance text-justify break-words max-w-full ">
             {textContent(newsInfo.content, false, true)}
           </p>
         </div>
       </div>
+
       <div className="flex justify-between">
         <button className="p-2 bg-second-color border-transparent border-2 text-primary-color text-center rounded-sm  hover:border-2
         hover:border-second-color hover:bg-transparent hover:text-second-color
