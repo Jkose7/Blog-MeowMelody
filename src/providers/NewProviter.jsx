@@ -1,17 +1,18 @@
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { useImageURL } from "../hooks/useImageURL";
 import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 
 import PropTypes from 'prop-types'
+import { useFindNews } from "../hooks/useFindNews";
 
 const newContext = createContext();
 const createNewContext = createContext();
 
 //CUSTOM HOOK
 
-export const useNewContext = () => { 
+export const useNewContext = () => {
   return useContext(newContext);
 };
 
@@ -23,15 +24,18 @@ export const useCreateNewContext = () => {
 
 export const NewProviter = ({ children }) => {
 
-  const [datos, setDatos] = useState([]);
+  const [datos, setDatos] = useState(()=>{
+    const news = JSON.parse(localStorage.getItem('news'))
+    return news === null ? [] : news
+  });
 
   const { imageURL, handleImage } = useImageURL()
-  const { contenidoAUrl, typeContent, handleContenidoA } = useContenidoAdicional() 
+  const { contenidoAUrl, typeContent, handleContenidoA } = useContenidoAdicional()
 
   const [newsId, setNewsIde] = useState(1)
 
   const incrementoId = () => {
-    setNewsIde (newsId + 1)
+    setNewsIde(newsId + 1)
   }
 
   const onSubmit = data => {
@@ -55,11 +59,15 @@ export const NewProviter = ({ children }) => {
     document.getElementById('myform').reset()
   };
 
+  useEffect(() => {
+    localStorage.setItem('news', JSON.stringify(datos))
+  }, [datos])
+
   console.log(datos)
 
-  const deleteNews = (id) =>{
+  const deleteNews = (id) => {
     console.log(id)
-    const filterDatos = datos.filter((datu) => datu.id !== id )
+    const filterDatos = datos.filter((datu) => datu.id !== id)
     console.log(filterDatos)
     setDatos(filterDatos);
 
@@ -67,7 +75,7 @@ export const NewProviter = ({ children }) => {
 
   return (
     <newContext.Provider value={datos}> {/*datos a cambiar */}
-      <createNewContext.Provider value={{onSubmit, handleContenidoA, handleImage, deleteNews}}> {/*funcion q cambia dato */}
+      <createNewContext.Provider value={{ onSubmit, handleContenidoA, handleImage, deleteNews }}> {/*funcion q cambia dato */}
         {children}
       </createNewContext.Provider>
     </newContext.Provider>

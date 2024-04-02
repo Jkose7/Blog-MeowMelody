@@ -1,5 +1,4 @@
-import { Link, useParams } from "react-router-dom";
-import { useNewContext } from "../providers/NewProviter";
+import { Link } from "react-router-dom";
 import { textContent } from "../hooks/TextContent";
 import { RenderContent } from "../components/renderContent";
 import { useState } from "react";

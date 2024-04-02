@@ -16,7 +16,7 @@ export function Index() {
         <div className="flex flex-col h-full justify-center w-full gap-2 my-6">
 
             {/* Contenedor grande */}
-            {datos.length >= 1 &&
+            {datos?.length >= 1 &&
                 datos?.slice(0, 1).map((dato) => (
                     <article key={dato.title} className=" bg-second-color  rounded-sm dark:bg-primary-color w-full min-h-96 flex text-primary-color dark:text-second-color">
 
@@ -91,16 +91,16 @@ export function Index() {
                 ))}
 
             {/* Contenedor para cuando no hay datos */}
-            {datos.length === 0 && <NoNewContent />}
+            {datos?.length === 0 && <NoNewContent />}
 
             {/* Contenedores pequeños adicionales */}
 
             <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 h-1/2 max-h-96 w-full gap-2 overflow-auto">
                 {/* Contenedor grande extra, si hay más de un dato */}
-                {datos.length > 1 && <NewsContent />}
+                {datos?.length > 1 && <NewsContent />}
 
                 {/* Contenedores pequeños adicionales */}
-                {Array.from({ length: 3 - Math.max(0, datos.length - 1) }).map((_, index) => (
+                {Array.from({ length: 3 - Math.max(0, datos?.length - 1) }).map((_, index) => (
                     <NoNewContent key={index} />
                 ))}
             </div>
