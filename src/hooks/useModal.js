@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useModal = () => {
+export const useModal = (errors) => {
     const [modal, setModal] = useState(false) 
 
   const showModal = () => {

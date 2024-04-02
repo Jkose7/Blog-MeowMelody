@@ -5,7 +5,6 @@ import { useImageURL } from "../hooks/useImageURL";
 import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 
 import PropTypes from 'prop-types'
-import { useFindNews } from "../hooks/useFindNews";
 
 const newContext = createContext();
 const createNewContext = createContext();
@@ -24,7 +23,7 @@ export const useCreateNewContext = () => {
 
 export const NewProviter = ({ children }) => {
 
-  const [datos, setDatos] = useState(()=>{
+  const [datos, setDatos] = useState(() => {
     const news = JSON.parse(localStorage.getItem('news'))
     return news === null ? [] : news
   });
@@ -75,7 +74,7 @@ export const NewProviter = ({ children }) => {
 
   return (
     <newContext.Provider value={datos}> {/*datos a cambiar */}
-      <createNewContext.Provider value={{ onSubmit, handleContenidoA, handleImage, deleteNews }}> {/*funcion q cambia dato */}
+      <createNewContext.Provider value={{onSubmit, handleContenidoA, handleImage, deleteNews }}> {/*funcion q cambia dato */}
         {children}
       </createNewContext.Provider>
     </newContext.Provider>

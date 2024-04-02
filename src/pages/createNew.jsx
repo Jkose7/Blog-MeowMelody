@@ -6,15 +6,15 @@ import { ModalNews } from "../components/modalNews";
 import { useModal } from "../hooks/useModal";
 
 export function CreateNews() {
-  const {onSubmit, handleContenidoA, handleImage} = useCreateNewContext()
-  const {modal, showModal} = useModal()
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+
+  const {onSubmit, handleContenidoA, handleImage} = useCreateNewContext()
+  const {modal, showModal} = useModal(errors)
 
   
   return (
