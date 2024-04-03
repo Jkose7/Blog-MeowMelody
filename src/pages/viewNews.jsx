@@ -27,7 +27,7 @@ export function ViewNews() {
   }
 
   return (
-    <div className="flex flex-col gap-3 my-7 minicel:max-h-[500px] sm:max-h-[910px] minicel:min-h-[400px ] sm:min-h-[710px] overflow-hidden ">
+    <div className="flex flex-col gap-3 my-7 sm:max-h-[910px] minicel:min-h-[400px ] sm:min-h-[710px] overflow-hidden ">
       {modalDelete && <ModalDeleteNews cerrar={showModalDelete}></ModalDeleteNews>}
       <div className="flex items-center w-full">
         <Link to="/">
@@ -68,20 +68,20 @@ export function ViewNews() {
 
       <div className="w-full flex font-titulos gap-2 h-full dark:text-primary-color text-lg font-medium minicel:flex-col sm:flex-row" >
         <div
-          className={`${image || additionalContent ? 'minicel:w-full sm:w-1/2' : 'hidden'} minicel:min-h-[150px] sm:min-h-[500px] border-2   border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
+          className={`${image || additionalContent ? 'minicel:w-full sm:w-1/2' : 'hidden'} flex flex-col minicel:min-h-[150px] sm:min-h-[500px] border-2   border-black rounded-sm grayscale hover:grayscale-0 transition-all duration-500 max-h-[500px]
           dark:border-white`}
         >
           {image !== null && (
             <div
               className={`${typeContent === "audio/mpeg" ||
                 typeContent === "application/pdf"
-                ? "h-[80%]"
-                : "h-1/2"
+                ? "h-full "
+                : "h-full "
                 }w-full `}
             >
               <img
                 src={image}
-                className="object-cover aspect-auto w-full "
+                className={`object-cover aspect-auto w-full h-full ${!additionalContent && 'sm:min-h-[500px]' }`}
                 alt=""
               />
             </div>
@@ -91,9 +91,9 @@ export function ViewNews() {
             <div
               className={`${typeContent === "audio/mpeg" ||
                 typeContent === "application/pdf"
-                ? "h-[12%]"
-                : "h-1/2"
-                }w-full `}
+                ? "min-h-12"
+                : "h-full "
+                } w-full flex`}
             >
               <RenderContent
                 content={additionalContent}
@@ -104,9 +104,9 @@ export function ViewNews() {
                 download
                 className={`${typeContent === "audio/mpeg" ||
                   typeContent === "application/pdf"
-                  ? "h-[8%]"
-                  : "h-1/2"
-                  } font-texto font-bold text-md absolute bottom-0 flex gap-2 text-second-color p-3 dark:text-primary-color`}
+                  ? "h-[12%]"
+                  : "h-full"
+                  } font-texto font-bold text-md ${typeContent === "application/pdf" && "absolute"} bottom-0 flex gap-2 text-second-color p-3 dark:text-primary-color`}
               >
                 <FontAwesomeIcon
                   icon={faDownload}

@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { useImageURL } from "../hooks/useImageURL";
 import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 import { useFindNews } from "../hooks/useFindNews";
 
-import {  Flip,toast, ToastContainer, } from "react-toastify";
+import {  toast, ToastContainer, Zoom, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -25,15 +26,23 @@ export function EditNews() {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const navigate = useNavigate();
 
     const showToastMessage = () => {
         toast("Editada correctamente", {
           className: "foo-bar",
-          theme: "dark",
-          transition: Flip,
-          autoClose: 3000, 
+          theme:"dark",
+          transition: Zoom,
+          autoClose: 1000
         });
+
+        setTimeout(() => {
+            navigate("/")
+        },2000)
     }
+
+    
+    
 
     
     return (
@@ -132,7 +141,7 @@ export function EditNews() {
 
                 {/*BTN CREAR*/}
                 <button type="submit" onClick={showToastMessage}>EDITAR</button>
-                <ToastContainer position="top-center"/>
+                <ToastContainer position="top-center" />
             </form>
         </section>
     );
