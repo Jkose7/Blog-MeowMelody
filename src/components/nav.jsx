@@ -14,10 +14,15 @@ export function Nav() {
         <nav className=" flex justify-between font-titulos font-bold items-center text-black 
         dark:text-primary-color h-14  top-0 bg-primary-color dark:bg-second-color border-b-2 border-black dark:border-primary-color
         minicel:w-full">
-            
-            <Link className="minicel:text-lg celular:text-xl sm:text-2xl lg:text-3xl" to="/">
-                MeowMelody
-            </Link>
+
+            <div className="flex items-center">
+                <Link to="/">
+                    <img src="/src/assets/icon-gatito.png" alt="" />
+                </Link>
+                <Link className="minicel:text-lg celular:text-xl sm:text-2xl lg:text-3xl" to="/">
+                    MeowMelody
+                </Link>
+            </div>
 
             <div className="">
                 <Link className="minicel:text-md celular:text-xl  px-3 py-1" to='/createNew'>

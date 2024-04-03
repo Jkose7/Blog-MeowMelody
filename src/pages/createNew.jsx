@@ -2,10 +2,15 @@ import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types'
 
 import { useCreateNewContext } from "../providers/NewProviter";
+import { useNewContext } from "../providers/NewProviter";
 import { ModalNews } from "../components/modalNews";
 import { useModal } from "../hooks/useModal";
 
 export function CreateNews() {
+  const datos = useNewContext()
+
+  console.log(datos.id)
+
   const {
     register,
     handleSubmit,

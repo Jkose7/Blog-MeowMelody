@@ -41,7 +41,7 @@ export const NewProviter = ({ children }) => {
     incrementoId()
 
     const nuevoObjeto = {
-      id: newsId,
+      id: newsId.toString() + data.titulo,
       fecha: new Date(),
       title: data.titulo,
       content: data.contenido,

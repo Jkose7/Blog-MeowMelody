@@ -71,7 +71,8 @@ export function NewsContent() {
                         <div className="h-1/6 w-full flex flex-row-reverse  px-3 items-center">
                             <Link
                                 to={`/news/${dato.id}`}
-                                className="font-texto text-xs font-semibold px-2 transition-all bg-primary-color text-second-color rounded-sm dark:text-primary-color dark:bg-second-color">
+                                className="font-texto text-xs font-semibold px-2 transition-all bg-primary-color text-second-color rounded-sm 
+                                hover:bg-violet-600 hover:text-primary-color dark:hover:bg-purple-600">
                                 ver mas
                             </Link>
                         </div>

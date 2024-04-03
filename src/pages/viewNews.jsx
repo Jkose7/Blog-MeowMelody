@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { textContent } from "../hooks/TextContent";
 import { RenderContent } from "../components/renderContent";
 import { useState } from "react";
 
@@ -28,7 +27,7 @@ export function ViewNews() {
   }
 
   return (
-    <div className="flex flex-col gap-3 my-7 minicel:max-h-[500px] sm:max-h-[710px] minicel:min-h-[400px ] sm:min-h-[710px] overflow-hidden ">
+    <div className="flex flex-col gap-3 my-7 minicel:max-h-[500px] sm:max-h-[910px] minicel:min-h-[400px ] sm:min-h-[710px] overflow-hidden ">
       {modalDelete && <ModalDeleteNews cerrar={showModalDelete}></ModalDeleteNews>}
       <div className="flex items-center w-full">
         <Link to="/">
@@ -82,7 +81,7 @@ export function ViewNews() {
             >
               <img
                 src={image}
-                className="object-cover aspect-auto w-full h-full"
+                className="object-cover aspect-auto w-full "
                 alt=""
               />
             </div>
@@ -126,7 +125,7 @@ export function ViewNews() {
             } flex-1  h-full w-full justify-center flex overflow-hidden max-h-[500px] min-h-[500px] overflow-y-scroll pr-5`}
         >
           <p className="text-balance text-justify break-words max-w-full ">
-            {textContent(content, false, true)}
+            {content}
           </p>
         </div>
       </div>

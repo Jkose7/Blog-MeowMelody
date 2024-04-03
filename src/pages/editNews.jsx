@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
-import PropTypes from 'prop-types'
 
 import { useImageURL } from "../hooks/useImageURL";
 import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 import { useFindNews } from "../hooks/useFindNews";
+
+import {  Flip,toast, ToastContainer, } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export function EditNews() {
     const { foundedNews } = useFindNews()
@@ -23,6 +26,16 @@ export function EditNews() {
         formState: { errors },
     } = useForm();
 
+    const showToastMessage = () => {
+        toast("Editada correctamente", {
+          className: "foo-bar",
+          theme: "dark",
+          transition: Flip,
+          autoClose: 3000, 
+        });
+    }
+
+    
     return (
         <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh] dark:text-primary-color">
             {console.log(foundedNews.title)}
@@ -118,10 +131,8 @@ export function EditNews() {
                 </div>
 
                 {/*BTN CREAR*/}
-                <button type="submit">EDITAR</button>
-
-
-
+                <button type="submit" onClick={showToastMessage}>EDITAR</button>
+                <ToastContainer position="top-center"/>
             </form>
         </section>
     );

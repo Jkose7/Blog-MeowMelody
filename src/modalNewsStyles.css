@@ -19,7 +19,7 @@
 
 .modal-info{
   position: relative; 
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   margin: auto; 
   height: 40%;
   padding: 20px;
