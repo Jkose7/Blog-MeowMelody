@@ -9,7 +9,7 @@ export const useNext = () => {
     const currentData = datos[findIndice]
     let nextId = currentData?.id
   
-    nextId === undefined ? nextId = 1 : nextId
+    nextId === undefined ? nextId = datos[0].id : nextId
   
     return nextId
   }
