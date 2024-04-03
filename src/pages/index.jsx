@@ -80,7 +80,8 @@ export function Index() {
                                 <div className="flex flex-row-reverse">
                                     <Link
                                         to={`/news/${dato.id}`}
-                                        className="font-texto font-semibold px-2 transition-all bg-primary-color text-second-color dark:text-primary-color dark:bg-second-color rounded-sm">
+                                        className="font-texto font-semibold px-2 transition-all bg-primary-color text-second-color dark:text-primary-color dark:bg-second-color rounded-sm
+                                        hover:bg-violet-600 hover:text-primary-color dark:hover:bg-purple-600">
                                         ver mas
                                     </Link>
                                 </div>

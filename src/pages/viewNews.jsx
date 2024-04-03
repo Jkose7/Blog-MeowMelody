@@ -81,7 +81,7 @@ export function ViewNews() {
             >
               <img
                 src={image}
-                className="object-cover aspect-auto w-full h-[500px]"
+                className="object-cover aspect-auto w-full "
                 alt=""
               />
             </div>

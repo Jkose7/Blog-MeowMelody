@@ -13,7 +13,7 @@ export function ButtonCreateNew() {
     const iconColor = theme === 'dark' ? '#1a1a1a' : '#FFFFEC';
 
     return (
-        <Link to="/createNew" className="cursor-pointer transition-all hover:scale-125">
+        <Link to="/createNew" className="cursor-pointer transition-all hover:scale-125 ">
             <FontAwesomeIcon
                 icon={faPaw}
                 size="xl"
