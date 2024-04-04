@@ -9,7 +9,7 @@ import { ModalDeleteNews } from "../components/modalDeleteNews";
 import { useFindNews } from "../hooks/useFindNews";
 import { usePrevious } from "../hooks/usePreviousContent";
 import { useNext } from "../hooks/useNextContent";
-import { iconChangeTheme } from "../hooks/iconChangeTheme";
+import { useChangeTheme } from "../hooks/iconChangeTheme";
 
 
 
@@ -18,7 +18,7 @@ export function ViewNews() {
   
   const nextId = useNext()
   const previousId = usePrevious()
-  const iconColor = iconChangeTheme()
+  const iconColor = useChangeTheme()
   
   const [modalDelete, setModalDelete] = useState(false)
 
@@ -73,15 +73,15 @@ export function ViewNews() {
         >
           {image !== null && (
             <div
-              className={`${typeContent === "audio/mpeg" ||
-                typeContent === "application/pdf"
-                ? "h-full "
+              className={`${(typeContent === "audio/mpeg" ||
+                typeContent === "application/pdf")
+                ? "h-"
                 : "h-full "
                 }w-full `}
             >
               <img
                 src={image}
-                className={`object-cover aspect-auto w-full h-full ${!additionalContent && 'sm:min-h-[500px]' }`}
+                className={`object-cover aspect-auto w-full max-h-[420px]  ${!additionalContent && 'sm:min-h-[500px]' }`}
                 alt=""
               />
             </div>
@@ -89,11 +89,7 @@ export function ViewNews() {
 
           {additionalContent !== null && (
             <div
-              className={`${typeContent === "audio/mpeg" ||
-                typeContent === "application/pdf"
-                ? "min-h-12"
-                : "h-full "
-                } w-full flex`}
+              className={`${image ? 'min-h-12 ' : 'h-full'} w-full flex`}
             >
               <RenderContent
                 content={additionalContent}

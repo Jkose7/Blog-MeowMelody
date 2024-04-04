@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { NewsContent } from "../components/NewsContent"
 import { NoNewContent } from "../components/NoNewContent"
 import { useNewContext } from "../providers/NewProviter"
+import { useChangeTheme } from "../hooks/iconChangeTheme"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMusic, faFilePdf, faImage } from "@fortawesome/free-solid-svg-icons"
@@ -11,15 +12,15 @@ import { textContent } from "../hooks/TextContent"
 
 export function Index() {
     const datos = useNewContext()
+    const {invertIconColor} = useChangeTheme()
 
     return (
         <div className="flex flex-col h-full justify-center w-full gap-2 my-6">
-
             {/* Contenedor grande */}
             {datos?.length >= 1 &&
                 datos?.slice(0, 1).map((dato) => (
                     <article key={dato.title} className=" bg-second-color  rounded-sm dark:bg-primary-color w-full min-h-96 flex text-primary-color dark:text-second-color">
-
+                        {console.log(dato.typeContent)}
                         <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-1/2' : 'w-0'} flex flex-col min-h-96 max-h-96 justify-center items-center`}>
                             {
                                 dato.image !== null &&
@@ -30,34 +31,33 @@ export function Index() {
                                 />
                             }
                             {
-                                dato.typeContent === "audio/mpeg" || dato.typeContent === "audio/ogg" && (
+                                (dato.typeContent === "audio/mpeg" || dato.typeContent === "audio/ogg") && (
                                     <div className="h-full flex items-center">
                                         <FontAwesomeIcon
                                             icon={faMusic}
-                                            style={{ color: "#fff" }}
-                                            size="4x"
-                                        >
-                                        </FontAwesomeIcon>
-                                    </div>
-                                )
-                            }
-                            {
-                                dato.typeContent === "application/pdf" && (
-                                    <div className="w-full h-full flex items-center justify-center ">
-                                        <FontAwesomeIcon
-                                            icon={faFilePdf}
-                                            style={{ color: "#fff" }}
+                                            style={{ color: invertIconColor}}
                                             size="xl">
                                         </FontAwesomeIcon>
                                     </div>
                                 )
                             }
                             {
-                                dato.typeContent === "image.png" || dato.typeContent === "image/png" && (
+                                (dato.typeContent === "application/pdf") && (
+                                    <div className="w-full h-full flex items-center justify-center ">
+                                        <FontAwesomeIcon
+                                            icon={faFilePdf}
+                                            style={{ color: invertIconColor }}
+                                            size="xl">
+                                        </FontAwesomeIcon>
+                                    </div>
+                                )
+                            }
+                            {
+                                (dato.typeContent === "image/jpeg" || dato.typeContent === "image/png") && (
                                     <div className="w-full h-full flex items-center justify-center ">
                                         <FontAwesomeIcon
                                             icon={faImage}
-                                            style={{ color: "#fff" }}
+                                            style={{ color: invertIconColor}}
                                             size="xl">
                                         </FontAwesomeIcon>
                                     </div>
@@ -65,7 +65,7 @@ export function Index() {
                             }
                         </div>
 
-                        <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-1/2' : 'w-full'} min-h-96 max-h-96 flex flex-col p-4`}>
+                        <div className={`${(dato.image !== null || dato.additionalContent !== null) ? 'w-1/2' : 'w-full'} min-h-96 max-h-96 flex flex-col p-4`}>
 
                             <div className="w-full h-[90%] flex flex-col gap-4">
                                 <div className="w-full text-3xl font-titulos font-bold flex items-center">

@@ -58,11 +58,26 @@ export const NewProviter = ({ children }) => {
     document.getElementById('myform').reset()
   };
 
-  useEffect(() => {
-    localStorage.setItem('news', JSON.stringify(datos))
-  }, [datos])
+  const editNews = (data, id) => {
+    const updateNews = datos.map(newsItem => {
+      if (newsItem.id === id) {
+        return {
+          ...newsItem,
+          id: newsId.toString() + data.titulo,
+          title: data.titulo,
+          content: data.contenido,
+          image: !imageURL ? newsItem.image : imageURL,
+          additionalContent: !contenidoAUrl ? newsItem.additionalContent : contenidoAUrl,
+          typeContent: typeContent,
+        }
+      } else {
+        return newsItem
+      }
+    })
 
-  console.log(datos)
+    setDatos(updateNews)
+    localStorage.setItem('news', JSON.stringify(updateNews))
+  }
 
   const deleteNews = (id) => {
     console.log(id)
@@ -72,9 +87,16 @@ export const NewProviter = ({ children }) => {
 
   }
 
+  useEffect(() => {
+    localStorage.setItem('news', JSON.stringify(datos))
+  }, [datos])
+
+  console.log(datos)
+
+
   return (
     <newContext.Provider value={datos}> {/*datos a cambiar */}
-      <createNewContext.Provider value={{onSubmit, handleContenidoA, handleImage, deleteNews }}> {/*funcion q cambia dato */}
+      <createNewContext.Provider value={{ onSubmit, handleContenidoA, handleImage, deleteNews, editNews }}> {/*funcion q cambia dato */}
         {children}
       </createNewContext.Provider>
     </newContext.Provider>

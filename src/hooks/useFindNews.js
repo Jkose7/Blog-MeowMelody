@@ -11,6 +11,12 @@ export const useFindNews = () => {
         }
     });
 
-    let { title, content, image, additionalContent, typeContent, fecha } = foundedNews
-    return { id, title, content, image, additionalContent, typeContent, fecha, foundedNews }
+    if (foundedNews) {
+        let { title, content, image, additionalContent, typeContent, fecha } = foundedNews
+        return { id, title, content, image, additionalContent, typeContent, fecha, foundedNews }
+    }else{
+        return { datos }
+    }
+
+
 }

@@ -7,7 +7,7 @@ import { useNewContext } from "../providers/NewProviter";
 
 export function ModalNews({cerrar}) {
   const datos = useNewContext()
-  const currentID = datos[datos.length - 1].id
+  const currentID = datos[datos.length - 1]?.id
 
   return (
     <div className="modal text-white dark:text-black ">

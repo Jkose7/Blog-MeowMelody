@@ -1,24 +1,17 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { useImageURL } from "../hooks/useImageURL";
-import { useContenidoAdicional } from "../hooks/usecontenidoAdicional";
 import { useFindNews } from "../hooks/useFindNews";
-
-import {  toast, ToastContainer, Zoom, } from "react-toastify";
+import { toast, ToastContainer, Zoom, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useCreateNewContext } from "../providers/NewProviter";
 
 export function EditNews() {
     const { foundedNews } = useFindNews()
-    const { imageURL, handleImage } = useImageURL()
-    const { contenidoAUrl, handleContenidoA } = useContenidoAdicional()
+    const { editNews, handleContenidoA, handleImage } = useCreateNewContext()
 
-    const editNews = data => {
-        foundedNews.title = data.titulo
-        foundedNews.content = data.contenido
-        foundedNews.image = imageURL
-        foundedNews.additionalContent = contenidoAUrl
+    const handleEdit = (data) =>{
+        editNews(data, foundedNews.id)
     }
 
     const {
@@ -30,29 +23,25 @@ export function EditNews() {
 
     const showToastMessage = () => {
         toast("Editada correctamente", {
-          className: "foo-bar",
-          theme:"dark",
-          transition: Zoom,
-          autoClose: 1000
+            className: "foo-bar",
+            theme: "dark",
+            transition: Zoom,
+            autoClose: 1000
         });
 
         setTimeout(() => {
             navigate("/")
-        },2000)
+        }, 2000)
     }
 
-    
-    
-
-    
     return (
         <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh] dark:text-primary-color">
-            {console.log(foundedNews.title)}
+            {console.log(foundedNews?.title)}
             <form
                 id="myform"
                 action=""
                 className="text-second-colordark:bg-primary-color w-full h-full flex flex-col justify-center gap-3"
-                onSubmit={handleSubmit(editNews)}
+                onSubmit={handleSubmit(handleEdit)}
             >
                 {/*TITULO */}
                 <label htmlFor="titulo" className="font-texto dark:text-primary-color font-bold">
@@ -60,7 +49,7 @@ export function EditNews() {
                 </label>
                 <input
                     type="text"
-                    defaultValue={foundedNews.title}
+                    defaultValue={foundedNews?.title}
                     {...register("titulo", {
                         required: {
                             value: true,
@@ -88,7 +77,7 @@ export function EditNews() {
                     id=""
                     cols="2"
                     rows="5"
-                    defaultValue={foundedNews.content}
+                    defaultValue={foundedNews?.content}
                     {...register("contenido", {
                         required: {
                             value: true,
