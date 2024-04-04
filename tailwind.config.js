@@ -20,7 +20,8 @@ export default {
       },
       screens: {
         'minicel' : '250px',
-        'celular' : '300px'
+        'celular' : '300px',
+        'celinter': '400px'
       }
     },
   },
