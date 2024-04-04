@@ -20,7 +20,6 @@ export function Index() {
             {datos?.length >= 1 &&
                 datos?.slice(0, 1).map((dato) => (
                     <article key={dato.title} className=" bg-second-color  rounded-sm dark:bg-primary-color w-full min-h-96 flex text-primary-color dark:text-second-color">
-                        {console.log(dato.typeContent)}
                         <div className={`${dato.image !== null || dato.additionalContent !== null ? 'w-1/2' : 'w-0'} flex flex-col min-h-96 max-h-96 justify-center items-center`}>
                             {
                                 dato.image !== null &&

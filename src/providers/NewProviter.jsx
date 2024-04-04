@@ -80,19 +80,13 @@ export const NewProviter = ({ children }) => {
   }
 
   const deleteNews = (id) => {
-    console.log(id)
     const filterDatos = datos.filter((datu) => datu.id !== id)
-    console.log(filterDatos)
     setDatos(filterDatos);
-
   }
 
   useEffect(() => {
     localStorage.setItem('news', JSON.stringify(datos))
   }, [datos])
-
-  console.log(datos)
-
 
   return (
     <newContext.Provider value={datos}> {/*datos a cambiar */}

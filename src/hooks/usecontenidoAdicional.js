@@ -21,8 +21,6 @@ export const useContenidoAdicional = () => {
       renderContenidoA.readAsDataURL(contenidoA)
    }
 
-   console.log(contenidoA)
-
    return { contenidoAUrl, typeContent, handleContenidoA }
 
 }

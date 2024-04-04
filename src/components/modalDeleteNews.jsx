@@ -16,7 +16,6 @@ export function ModalDeleteNews({cerrar}) {
       });
 
     const { deleteNews } = useCreateNewContext();
-    console.log(deleteNews);
 
   return (
     <div className="modal text-white dark:text-black ">

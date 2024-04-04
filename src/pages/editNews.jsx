@@ -36,7 +36,6 @@ export function EditNews() {
 
     return (
         <section className=" bg-primary-color dark:bg-second-color dark:bg-blend-color-dodge h-[80vh] dark:text-primary-color">
-            {console.log(foundedNews?.title)}
             <form
                 id="myform"
                 action=""
