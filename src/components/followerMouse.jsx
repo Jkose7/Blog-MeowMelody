@@ -12,20 +12,9 @@ export const FollowMouse = () => {
     }
 
     window.addEventListener('pointermove', Move)
-
-    return () => {
-      window.removeEventListener('pointermove', Move)
-    }
   }, []) 
 
-  
-  useEffect(() => {
-    document.body.classList.toggle('no-cursor', true)
 
-    return () => {
-      document.body.classList.remove('no-cursor')
-    }
-  }, [])
 
   return (
     <>
@@ -34,7 +23,7 @@ export const FollowMouse = () => {
         backgroundImage:`url(${"/src/assets/gato-negromouse.png"})`,
         pointerEvents: "none",
         left: -60,
-        top: -25,
+        top: -20,
         width: 32,
         height: 32,
         transform: `translate(${position.x}px, ${position.y}px)`
