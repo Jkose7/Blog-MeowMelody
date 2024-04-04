@@ -25,14 +25,15 @@ export function ModalDeleteNews({cerrar}) {
         </h1>
         <div className="buttons ">
           <Link
-            className="home text-center border-primary-color dark:text-secborder-second-color dark:border-second-color dark:hover:bg-second-color dark:hover:text-white"
+            className="home text-center border-primary-color  
+            dark:border-second-color dark:hover:bg-second-color dark:text-second-color dark:hover:text-white"
             to="/"
             onClick={() => deleteNews(newsInfo.id)}
           >
             Si
           </Link>
           <button
-            className="news text-center border-primary-color dark:text-secborder-second-color dark:border-second-color dark:hover:bg-second-color "
+            className="news text-center border-primary-color dark:text-second-color dark:border-second-color dark:hover:bg-second-color "
             onClick={cerrar}
           >
             No
