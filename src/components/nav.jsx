@@ -16,9 +16,6 @@ export function Nav() {
         minicel:w-full">
 
             <div className="flex items-center">
-                <Link to="/">
-                    <img src="/src/assets/icon-gatito.png" alt="" />
-                </Link>
                 <Link className="minicel:text-lg celular:text-xl sm:text-2xl lg:text-3xl" to="/">
                     MeowMelody
                 </Link>

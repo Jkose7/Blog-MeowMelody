@@ -12,6 +12,7 @@ import { NewProviter } from "./providers/NewProviter.jsx";
 import { ViewNews } from "./pages/viewNews.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { EditNews } from "./pages/editNews.jsx";
+import { FollowMouse } from "./components/followerMouse.jsx";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           </Routes>
 
           <Footer />
+          <FollowMouse></FollowMouse>
         </main>
       </ThemeProviter>
     </NewProviter>
